@@ -1,20 +1,23 @@
 #ifndef BUTTERBOT_FIRMWARE_SPEECHGEN_H
 #define BUTTERBOT_FIRMWARE_SPEECHGEN_H
 
+#include <atomic>
 #include <memory>
 #include <span>
-#include "flite.h"
+#include <string>
+#include <vector>
 #include "freertos/ringbuf.h"
 #include "Thread/Threaded.h"
+#include "Resampler.h"
 
 /**
- * Flite thread, koji vrti TTS
+ * eSpeak thread, koji vrti TTS
  * callback puni ringbuffer/queue
- * generate vuče iz buffera/queuea, šalje dalje, odblokirava flite thread (ako je napunjen buff)
+ * generate vuče iz buffera/queuea, šalje dalje, odblokirava eSpeak thread (ako je napunjen buff)
  *
- * ako je currently running TTS thread, svaki novi parse poziv prazni buffer i vraća CST_AUDIO_STREAM_STOP
+ * ako je currently running TTS thread, svaki novi parse poziv prazni buffer i callback vraća 1 (abort)
  *
- *
+ * eSpeak outputs 22050 Hz, resampled to 16 kHz before it goes into the ringbuffer.
  */
 class SpeechGen {
 public:
@@ -32,13 +35,14 @@ public:
 	/**
 	 * Initializes speech synthesis with given text.
 	 * Aborts current synthesis and empties the buffer if synthesis is currently running.
-	 * @param text US English text to be synthesized
+	 * @param text UTF-8 text to be synthesized, in the language of the configured voice (Finnish)
 	 */
 	void parseText(std::string text);
 
 	/**
 	 * Initializes speech synthesis with given phonemes.
 	 * Aborts current synthesis and empties the buffer if synthesis is currently running.
+	 * Spoken with the English voice, since the phonemes come from the English speech recognizer.
 	 * @param phonemes Phonemes written in ESP-SR's Multinet format (best obtained directly from AudioFrontend's speech mode)
 	 */
 	void parsePhonemes(const std::string& phonemes);
@@ -61,33 +65,42 @@ public:
 
 private:
 	static constexpr size_t BufferSize = 4 * 1024;
-	static constexpr size_t FliteMinBufSize = 512;
 
-	std::unique_ptr<Threaded> fliteThread;
+	std::unique_ptr<Threaded> synthThread;
 
-	void fliteThreadFunc();
+	void synthThreadFunc();
 
-	int fliteCallback(const cst_wave* w, int start, int size, int last, cst_audio_streaming_info* asi);
+	bool initEngine();
+	bool setVoice(const char* name);
+
+	int synthCallback(const int16_t* samples, int count);
 
 	SemaphoreHandle_t startSem;
 	SemaphoreHandle_t endSem;
-	cst_audio_streaming_info* asi;
-	cst_voice* voice;
 
 	RingbufHandle_t ringbuf;
 
-	std::string fliteInput;
+	Resampler resampler;
+	std::vector<int16_t> resampled;
 
-	InputType fliteInputType = InputType::Text;
+	std::string synthInput;
 
-	//Aborts flite's synthesis stream (flite_XXX_to_speech function calls)
+	InputType synthInputType = InputType::Text;
+
+	bool engineInitDone = false;
+	bool engineReady = false;
+
+	//Timestamp of the last parse call, for time-to-first-sound logging
+	std::atomic<int64_t> requestTime = 0;
+	bool firstChunk = false;
+
+	//Aborts eSpeak's synthesis (makes the synth callback return 1)
 	std::atomic_bool abort = false;
 	std::atomic_bool synthRunning = false;
 
 	void checkAndAbort();
 
-	[[maybe_unused]] static std::string flitePhoneToCMU(const cst_item* seg);
-	static std::string CMUToFlitePhone(const std::string& cmu);
+	static std::string CMUToESpeak(const std::string& cmu);
 	static std::string multinetToCMU(const std::string& input);
 };
 

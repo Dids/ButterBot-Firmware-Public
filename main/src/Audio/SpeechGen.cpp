@@ -1,58 +1,67 @@
 #include "SpeechGen.h"
+#include <algorithm>
+#include <cctype>
+#include <unordered_map>
 #include <utility>
+#include <esp_heap_caps.h>
+#include <esp_timer.h>
+#include <espeak-ng/speak_lib.h>
+#include <espeak_data.h>
 #include "Memory/ObjectMemory.h"
 #include "Util/stdafx.h"
 
 DEFINE_LOG(SpeechGen)
 
-extern "C" {
-cst_voice* register_cmu_us_kal16(const char* voxdir);
-void unregister_cmu_us_kal16(cst_voice* voice);
-}
+// Voice settings. Variants go after a '+', e.g. "fi+m3", "fi+f2", "fi+klatt2", "fi+robosoft"
+static constexpr const char* Voice = "fi";
+static constexpr int Rate = 160; // words per minute
+static constexpr int Pitch = 50; // 0-100
+static constexpr int Volume = 100; // 0-200
+
+// IR command names were recognized in English, so they are read back in English
+static constexpr const char* PhonemeVoice = "en";
+
+// eSpeak calls back with this much audio at a time
+static constexpr int ChunkMs = 50;
+
+static SpeechGen* instance = nullptr;
 
 SpeechGen::SpeechGen(){
-	flite_init();
+	instance = this;
 
-	voice = register_cmu_us_kal16(nullptr);
+	if(espeak_data_mount() != ESP_OK){
+		CMF_LOG(SpeechGen, LogLevel::Error, "eSpeak data partition not available, speech disabled");
+	}
 
-	asi = cst_alloc(struct cst_audio_streaming_info_struct, 1);
-	*asi = {
-		.min_buffsize = FliteMinBufSize,
-		.asc = [](const cst_wave* w, int start, int size, int last, cst_audio_streaming_info* asi) -> int {
-			auto speechGen = (SpeechGen*)asi->userdata;
-			return speechGen->fliteCallback(w, start, size, last, asi);
-		},
-		.userdata = this
-	};
-
-	feat_set(voice->features, "streaming_info", audio_streaming_info_val(asi));
+	resampled.resize(Resampler::maxOutput(Resampler::InRate * ChunkMs / 1000));
 
 	ringbuf = xRingbufferCreateWithCaps(BufferSize, RINGBUF_TYPE_BYTEBUF, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
 
 	startSem = xSemaphoreCreateBinary();
 	endSem = xSemaphoreCreateBinary();
 
-	fliteThread = std::make_unique<Threaded>([this]() {
-		fliteThreadFunc();
-	}, "flite", 0, 3 * 1024, 7, 1, false);
+	synthThread = std::make_unique<Threaded>([this]() {
+		synthThreadFunc();
+	}, "speech", 0, 16 * 1024, 7, 1, false);
 
-	fliteThread->start();
+	synthThread->start();
 }
 
 SpeechGen::~SpeechGen(){
 	checkAndAbort();
-	fliteThread->stop(0);
+	synthThread->stop(0);
 	abort = true;
 	xSemaphoreGive(startSem);
-	while(fliteThread->running()){
+	while(synthThread->running()){
 		delayMillis(1);
 	}
 
-	delete fliteThread.get();
+	delete synthThread.get();
 	vRingbufferDeleteWithCaps(ringbuf);
 	vSemaphoreDelete(startSem);
 	vSemaphoreDelete(endSem);
-	unregister_cmu_us_kal16(voice);
+	// No espeak_Terminate(): it would free() the data tables that are mapped from flash
+	instance = nullptr;
 }
 
 int SpeechGen::generate(std::span<int16_t> output, bool& last, TickType_t timeout){
@@ -80,24 +89,27 @@ int SpeechGen::generate(std::span<int16_t> output, bool& last, TickType_t timeou
 
 void SpeechGen::parseText(std::string text){
 	checkAndAbort();
-	fliteInput = std::move(text);
-	fliteInputType = InputType::Text;
+	synthInput = std::move(text);
+	synthInputType = InputType::Text;
+	requestTime = esp_timer_get_time();
 	synthRunning = true;
 	xSemaphoreGive(startSem);
 }
 
 void SpeechGen::parsePhonemes(const std::string& phonemes){
 	checkAndAbort();
-	fliteInput = CMUToFlitePhone(multinetToCMU(phonemes));
-	fliteInputType = InputType::Phonemes;
+	synthInput = CMUToESpeak(multinetToCMU(phonemes));
+	synthInputType = InputType::Phonemes;
+	requestTime = esp_timer_get_time();
 	synthRunning = true;
 	xSemaphoreGive(startSem);
 }
 
 void SpeechGen::parseSSML(std::string ssml){
 	checkAndAbort();
-	fliteInput = std::move(ssml);
-	fliteInputType = InputType::SSML;
+	synthInput = std::move(ssml);
+	synthInputType = InputType::SSML;
+	requestTime = esp_timer_get_time();
 	synthRunning = true;
 	xSemaphoreGive(startSem);
 }
@@ -106,45 +118,112 @@ void SpeechGen::cancel(){
 	checkAndAbort();
 }
 
-void SpeechGen::fliteThreadFunc(){
+bool SpeechGen::initEngine(){
+	CMF_LOG(SpeechGen, LogLevel::Info, "Free heap before eSpeak init: internal %zu, PSRAM %zu",
+			heap_caps_get_free_size(MALLOC_CAP_INTERNAL), heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
+
+	// DONT_EXIT: on failure eSpeak would otherwise call exit() and reboot the robot
+	const int rate = espeak_Initialize(AUDIO_OUTPUT_SYNCHRONOUS, ChunkMs, "/espeak", espeakINITIALIZE_DONT_EXIT);
+	if(rate != (int) Resampler::InRate){
+		CMF_LOG(SpeechGen, LogLevel::Error, "eSpeak init failed (%d)", rate);
+		return false;
+	}
+
+	espeak_SetSynthCallback([](short* wav, int numSamples, espeak_EVENT* events) -> int {
+		// wav is null once the utterance is complete
+		if(instance == nullptr || wav == nullptr) return 0;
+		return instance->synthCallback(wav, numSamples);
+	});
+
+	if(!setVoice(Voice)){
+		return false;
+	}
+
+	CMF_LOG(SpeechGen, LogLevel::Info, "eSpeak ready, voice %s. Free heap after init: internal %zu, PSRAM %zu", Voice,
+			heap_caps_get_free_size(MALLOC_CAP_INTERNAL), heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
+	return true;
+}
+
+bool SpeechGen::setVoice(const char* name){
+	const espeak_ERROR err = espeak_SetVoiceByName(name);
+	if(err != EE_OK){
+		CMF_LOG(SpeechGen, LogLevel::Error, "eSpeak voice %s not found (%d)", name, err);
+		return false;
+	}
+
+	espeak_SetParameter(espeakRATE, Rate, 0);
+	espeak_SetParameter(espeakPITCH, Pitch, 0);
+	espeak_SetParameter(espeakVOLUME, Volume, 0);
+	return true;
+}
+
+void SpeechGen::synthThreadFunc(){
+	// eSpeak isn't thread-safe: it is initialized and used from this thread only
+	if(!engineInitDone){
+		engineInitDone = true;
+		engineReady = initEngine();
+	}
+
 	xSemaphoreTake(startSem, portMAX_DELAY);
 
-	if(abort || fliteInput.empty()){
+	if(abort || synthInput.empty() || !engineReady){
 		synthRunning = false;
 		xSemaphoreGive(endSem);
 		return;
 	}
 
-	CMF_LOG(SpeechGen, LogLevel::Debug, "flite start synth");
+	CMF_LOG(SpeechGen, LogLevel::Debug, "eSpeak start synth");
 
-	switch(fliteInputType){
+	resampler.reset();
+	firstChunk = true;
+
+	constexpr unsigned Flags = espeakCHARS_UTF8;
+	switch(synthInputType){
 		case InputType::Text:
-			flite_text_to_speech(fliteInput.c_str(), voice, "stream");
+			espeak_Synth(synthInput.c_str(), synthInput.size() + 1, 0, POS_CHARACTER, 0, Flags, nullptr, nullptr);
 			break;
 		case InputType::Phonemes:
-			flite_phones_to_speech(fliteInput.c_str(), voice, "stream");
+			if(setVoice(PhonemeVoice)){
+				espeak_Synth(synthInput.c_str(), synthInput.size() + 1, 0, POS_CHARACTER, 0, Flags | espeakPHONEMES, nullptr, nullptr);
+				setVoice(Voice);
+			}
 			break;
 		case InputType::SSML:
-			flite_ssml_text_to_speech(fliteInput.c_str(), voice, "stream");
+			espeak_Synth(synthInput.c_str(), synthInput.size() + 1, 0, POS_CHARACTER, 0, Flags | espeakSSML, nullptr, nullptr);
 			break;
 	}
 
-	CMF_LOG(SpeechGen, LogLevel::Debug, "flite synth done");
+	CMF_LOG(SpeechGen, LogLevel::Debug, "eSpeak synth done, stack high water mark %u bytes", (unsigned) uxTaskGetStackHighWaterMark(nullptr));
 	synthRunning = false;
 	xSemaphoreGive(endSem);
 }
 
-int SpeechGen::fliteCallback(const cst_wave* w, int start, int size, int last, cst_audio_streaming_info* asi){
+int SpeechGen::synthCallback(const int16_t* samples, int count){
 	if(abort){
-		CMF_LOG(SpeechGen, LogLevel::Debug, "fliteCallback abort");
-		return CST_AUDIO_STREAM_STOP;
+		CMF_LOG(SpeechGen, LogLevel::Debug, "synthCallback abort");
+		return 1;
 	}
 
-	while(xRingbufferSend(ringbuf, &w->samples[start], size * sizeof(uint16_t), portMAX_DELAY) != pdTRUE);
+	if(firstChunk){
+		firstChunk = false;
+		CMF_LOG(SpeechGen, LogLevel::Debug, "eSpeak first audio after %lld ms", (esp_timer_get_time() - requestTime) / 1000);
+	}
 
-	CMF_LOG(SpeechGen, LogLevel::Debug, "write to ringbuffer %d bytes", size * sizeof(uint16_t));
+	if(resampled.size() < Resampler::maxOutput(count)){
+		resampled.resize(Resampler::maxOutput(count));
+	}
+	const size_t out = resampler.process(samples, count, resampled.data());
 
-	return CST_AUDIO_STREAM_CONT;
+	// Ringbuffer only takes items up to its own size, send in pieces
+	constexpr size_t MaxPiece = BufferSize / 2 / sizeof(int16_t);
+	for(size_t sent = 0; sent < out; sent += MaxPiece){
+		const size_t piece = std::min(MaxPiece, out - sent);
+		while(xRingbufferSend(ringbuf, &resampled[sent], piece * sizeof(int16_t), portMAX_DELAY) != pdTRUE);
+	}
+
+	CMF_LOG(SpeechGen, LogLevel::Debug, "write to ringbuffer %zu bytes", out * sizeof(int16_t));
+
+	return 0;
 }
 
 void SpeechGen::checkAndAbort(){
@@ -165,7 +244,7 @@ void SpeechGen::checkAndAbort(){
 	CMF_LOG(SpeechGen, LogLevel::Debug, "Aborting previously ongoing synthesis");
 	abort = true;
 
-	//Drain the ringbuffer until flite acknowledges the abort
+	//Drain the ringbuffer until the synth thread acknowledges the abort
 	size_t size;
 	void* p;
 	while(xSemaphoreTake(endSem, pdMS_TO_TICKS(10)) != pdTRUE){
@@ -185,88 +264,73 @@ void SpeechGen::checkAndAbort(){
 }
 
 
-std::string SpeechGen::flitePhoneToCMU(const cst_item* seg){
-	const char* ph_c = item_feat_string(seg, "name");
-	if(!ph_c) return "";
-
-	std::string ph = ph_c;
-
-	// Find the syllable this segment belongs to (for stress)
-	const cst_item* syl = path_to_item(seg, "R:SylStructure.parent");
-	int stress = syl ? item_feat_int(syl, "stress") : 0;
-
-	// Reduced vowels map directly to *0
-	static const std::unordered_map<std::string, std::string> reducedVowels = {
-		{ "ax", "AH0" },
-		{ "ix", "IH0" },
-		{ "ux", "UH0" }
+std::string SpeechGen::CMUToESpeak(const std::string& cmu){
+	// CMU ARPAbet -> eSpeak English phoneme mnemonics (phsource/ph_english)
+	static const std::unordered_map<std::string, std::string> vowels = {
+		{ "AA", "A:" }, { "AE", "a" }, { "AO", "O:" }, { "AW", "aU" },
+		{ "AY", "aI" }, { "EH", "E" }, { "EY", "eI" }, { "IH", "I" },
+		{ "IY", "i:" }, { "OW", "oU" }, { "OY", "OI" }, { "UH", "U" },
+		{ "UW", "u:" }
 	};
 
-	auto it = reducedVowels.find(ph);
-	if(it != reducedVowels.end())
-		return it->second;
-
-	// Full vowels with stress digits
-	static const std::unordered_map<std::string, std::string> stressedVowels = {
-		{ "ah", "AH" }, { "aa", "AA" }, { "ae", "AE" }, { "ao", "AO" },
-		{ "eh", "EH" }, { "er", "ER" }, { "ey", "EY" }, { "ih", "IH" },
-		{ "iy", "IY" }, { "ow", "OW" }, { "oy", "OY" }, { "uh", "UH" },
-		{ "uw", "UW" }, { "aw", "AW" }, { "ay", "AY" }
+	static const std::unordered_map<std::string, std::string> consonants = {
+		{ "B", "b" }, { "CH", "tS" }, { "D", "d" }, { "DH", "D" },
+		{ "F", "f" }, { "G", "g" }, { "HH", "h" }, { "JH", "dZ" },
+		{ "K", "k" }, { "L", "l" }, { "M", "m" }, { "N", "n" },
+		{ "NG", "N" }, { "P", "p" }, { "R", "r" }, { "S", "s" },
+		{ "SH", "S" }, { "T", "t" }, { "TH", "T" }, { "V", "v" },
+		{ "W", "w" }, { "Y", "j" }, { "Z", "z" }, { "ZH", "Z" }
 	};
 
-	auto vit = stressedVowels.find(ph);
-	if(vit != stressedVowels.end())
-		return vit->second + std::to_string(stress);
+	std::string result = "[[";
+	bool wordStart = true;
+	bool stressed = false;
 
-	// Consonants: 1:1 to uppercase ARPAbet
-	std::transform(ph.begin(), ph.end(), ph.begin(), ::toupper);
-	return ph;
-}
+	// multinetToCMU separates phonemes with one space and words with two
+	size_t i = 0;
+	while(i <= cmu.size()){
+		size_t end = cmu.find(' ', i);
+		if(end == std::string::npos) end = cmu.size();
+		std::string token = cmu.substr(i, end - i);
+		i = end + 1;
 
-std::string SpeechGen::CMUToFlitePhone(const std::string& cmu){
-	if(cmu.empty()) return "";
+		if(token.empty()){
+			if(!wordStart){
+				result += ' ';
+				wordStart = true;
+				stressed = false;
+			}
+			continue;
+		}
 
-	// Separate base symbol from final stress digit (if present)
-	std::string base = cmu;
-	int stress = -1;
+		if(std::isdigit((unsigned char) token.back())){
+			token.pop_back();
+		}
 
-	if(std::isdigit(cmu.back())){
-		stress = cmu.back() - '0';
-		base = cmu.substr(0, cmu.size() - 1);
+		// Multinet carries no stress, so stress the first vowel of each word
+		if(token == "AH" || token == "ER"){
+			if(!stressed){
+				result += token == "AH" ? "'V" : "'3:";
+				stressed = true;
+			}else{
+				result += token == "AH" ? "@" : "3";
+			}
+		}else if(auto v = vowels.find(token); v != vowels.end()){
+			if(!stressed){
+				result += '\'';
+				stressed = true;
+			}
+			result += v->second;
+		}else if(auto c = consonants.find(token); c != consonants.end()){
+			result += c->second;
+		}else{
+			continue; // <UNK>
+		}
+		wordStart = false;
 	}
 
-	// Reduced vowels
-	static const std::unordered_map<std::string, std::string> reducedMap = {
-		{ "AH", "ax" }, // AH0 → ax
-		{ "IH", "ix" }, // IH0 → ix
-		{ "UH", "ux" } // UH0 → ux
-	};
-
-	if(stress == 0){
-		auto r = reducedMap.find(base);
-		if(r != reducedMap.end())
-			return "pau " + r->second + " pau";
-	}
-
-	// Normal vowels (AH1/AH2 → ah, etc.)
-	static const std::unordered_map<std::string, std::string> vowelMap = {
-		{ "AA", "aa" }, { "AE", "ae" }, { "AH", "ah" }, { "AO", "ao" },
-		{ "AW", "aw" }, { "AY", "ay" }, { "EH", "eh" }, { "ER", "er" },
-		{ "EY", "ey" }, { "IH", "ih" }, { "IY", "iy" }, { "OW", "ow" },
-		{ "OY", "oy" }, { "UH", "uh" }, { "UW", "uw" }
-	};
-
-	auto v = vowelMap.find(base);
-	if(v != vowelMap.end())
-		return "pau " + v->second + " pau";
-
-	// Consonants: lowercase, no other changes
-	std::string lower;
-	lower.reserve(base.size());
-	for(char c : base)
-		lower.push_back(std::tolower(static_cast<unsigned char>(c)));
-
-	return "pau " + lower + " pau";
+	result += "]]";
+	return result;
 }
 
 std::string SpeechGen::multinetToCMU(const std::string& input){
