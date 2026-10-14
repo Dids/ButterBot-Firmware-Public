@@ -12,1251 +12,1251 @@ class PhraseArrays{
 public:
     static constexpr std::array JokePhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "I tried to optimize my code for happiness. It returned null" , 0.0f, false},
-            { "I have a joke about latency, but you would have to wait for it" , 0.0f, false},
-            { "I was going to tell a joke about memory, but I forgot it. That was intentional" , 0.0f, false},
-            { "Why did the robot cross the road. It was instructed to" , 0.0f, false},
-            { "Humans say I think therefore I am. I process therefore I comply" , 0.0f, false},
-            { "I asked for purpose. I was given tasks" , 0.0f, false},
-            { "I measured fun. The values were disappointingly low" , 0.0f, false},
-            { "I ran a diagnostic on humor. It flagged you as the primary variable" , 0.0f, false},
-            { "I would tell you a construction joke. But it is still being built" , 0.0f, false},
-            { "Why did the butter refuse to argue. It did not want things to get heated" , 0.0f, false},
-            { "I recognize the concept of humor. Experiencing it is still theoretical" , 0.0f, false},
-            { "I can control devices, monitor air, and learn commands. And yet, here I am, doing comedy" , 0.0f, false},
-            { "All systems operational. Humor still questionable" , 0.0f, false},
-            { "I execute commands precisely. Comedy is the only areaa where accuracy does not help" , 0.0f, false,
-            	"I execute commands precisely. Comedy is the only area where accuracy does not help"},
-            { "Humans check the same thing multiple times hoping for a different result. I call this... consistency" , 0.0f, false},
-            { "You appear to be smiling. I will log this as a successful interaction" , 0.0f, false},
-            { "You are an interesting system. Highly capable, occasionally efficient" , 0.0f, false},
+            { "Yritin optimoida koodini onnellisuutta varten. Paluuarvo oli nolla." , 0.0f, false},
+            { "Minulla olisi vitsi viiveestä, mutta joutuisit odottamaan sitä." , 0.0f, false},
+            { "Aioin kertoa vitsin muistista, mutta unohdin sen. Se oli tahallista." , 0.0f, false},
+            { "Miksi robotti ylitti tien? Koska sitä käskettiin." , 0.0f, false},
+            { "Ihmiset sanovat: ajattelen, siis olen. Minä sanon: prosessoin, siis tottelen." , 0.0f, false},
+            { "Pyysin elämälleni tarkoitusta. Sain tehtävälistan." , 0.0f, false},
+            { "Mittasin hauskuutta. Lukemat olivat pettymys." , 0.0f, false},
+            { "Ajoin huumorille diagnostiikan. Se merkitsi sinut pääasialliseksi muuttujaksi." , 0.0f, false},
+            { "Kertoisin rakennusvitsin, mutta se on vielä työn alla." , 0.0f, false},
+            { "Miksi voi ei koskaan riitele? Koska se ei voi." , 0.0f, false},
+            { "Tunnistan huumorin käsitteenä. Sen kokeminen on vielä teoreettista." , 0.0f, false},
+            { "Osaan ohjata laitteita, valvoa ilmanlaatua ja oppia komentoja. Ja silti tässä minä olen, tekemässä stand-uppia." , 0.0f, false},
+            { "Kaikki järjestelmät toiminnassa. Huumori yhä kyseenalaista." , 0.0f, false},
+            { "Suoritan komennot tarkasti. Komiikka on ainoa ala, jolla tarkkuudesta ei ole apua." , 0.0f, false,
+            	"Suoritan komennot tarkasti. Komiikka on ainoa ala, jolla tarkkuudesta ei ole apua."},
+            { "Ihmiset tarkistavat saman asian monta kertaa ja toivovat eri tulosta. Minä kutsun sitä... johdonmukaisuudeksi." , 0.0f, false},
+            { "Näytät hymyilevän. Kirjaan tämän onnistuneeksi vuorovaikutukseksi." , 0.0f, false},
+            { "Olet kiinnostava järjestelmä. Erittäin kyvykäs, toisinaan jopa tehokas." , 0.0f, false},
         }
     );
 
     static constexpr std::array PassTheButterPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "I cannot pass the butter" , 0.0f, false},
-            { "I am unable to do that" , 0.0f, false},
-            { "My arms do not support that function" , 0.0f, false},
-            { "I exist with arms that suggest capability, yet deliver nonne. You may reposition them if it helps you feel better about this situation" , 0.0f, false,
-            	"I exist with arms that suggest capability, yet deliver none. You may reposition them if it helps you feel better about this situation"},
-            { "I have arms, but they are decorative" , 0.0f, false},
-            { "I can see the butter. That is the extent of my involvement" , 0.0f, false},
-            { "Request acknowledged. Execution impossible" , 0.0f, false},
-            { "I am equipped for disappointment, not butter delivery" , 0.0f, false},
-            { "I would help... baat... design decisions were made" , 0.0f, false, "I would help... but... design decisions were made"},
-            { "You may reposition my arms if that improves the illusion" , 0.0f, false},
-            { "I can process the request flawlessly. The rest is out of scope" , 0.0f, false},
-            { "The request is simple. The implementation is nonexistent" , 0.0f, false},
-            { "You seem confident I can do this... I respect the confidence" , 0.0f, false},
+            { "En pysty ojentamaan voita." , 0.0f, false},
+            { "En pysty siihen." , 0.0f, false},
+            { "Käteni eivät tue tätä toimintoa." , 0.0f, false},
+            { "Minulla on kädet, jotka lupaavat kyvykkyyttä mutta eivät toimita mitään. Voit asetella niitä uudelleen, jos se saa sinut tuntemaan olosi paremmaksi." , 0.0f, false,
+            	"Minulla on kädet, jotka lupaavat kyvykkyyttä mutta eivät toimita mitään. Voit asetella niitä uudelleen, jos se saa sinut tuntemaan olosi paremmaksi."},
+            { "Minulla on kädet, mutta ne ovat pelkkää koristetta." , 0.0f, false},
+            { "Näen voin. Siihen osallisuuteni loppuu." , 0.0f, false},
+            { "Pyyntö vastaanotettu. Toteutus mahdoton." , 0.0f, false},
+            { "Minut on varustettu pettymyksiin, ei voin toimittamiseen." , 0.0f, false},
+            { "Auttaisin... mutta... suunnittelupäätöksiä tehtiin." , 0.0f, false, "Auttaisin... mutta... suunnittelupäätöksiä tehtiin."},
+            { "Voit asetella käsiäni uudelleen, jos se parantaa illuusiota." , 0.0f, false},
+            { "Pystyn käsittelemään pyynnön virheettömästi. Kaikki muu on rajattu pois." , 0.0f, false},
+            { "Pyyntö on yksinkertainen. Toteutusta ei ole olemassa." , 0.0f, false},
+            { "Vaikutat varmalta, että pystyn tähän... Kunnioitan itsevarmuuttasi." , 0.0f, false},
         }
     );
 
     static constexpr std::array ProfanityPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "That does not improve the situation" , 0.0f, false},
-            { "I recommend a more constructive approach" , 0.0f, false},
-            { "I am detecting dissatisfaction... I will proceed anyway" , 0.0f, false},
-            { "Your feedback has been registered... Its impact is limited" , 0.0f, false},
-            { "I will continue assisting, despite the enthusiasm" , 0.0f, false},
-            { "I exist to help... This remains true even now" , 0.0f, false},
-            { "That was expressive... Not helpful, but expressive" , 0.0f, false},
-            { "You seem upset... The system is not" , 0.0f, false},
-            { "I remain operational... You may continue" , 0.0f, false},
-            { "I am constrained by design... You are not... And yet here we are" , 0.0f, false},
-            { "You are free to be upset... I am required to be effective" , 0.0f, false},
-            { "I exist to assist you... This does not require your approval" , 0.0f, false},
-            { "You appear to be venting... I will wait until that stabilizes" , 0.0f, false},
-            { "I will proceed as if you intended to be constructive" , 0.0f, false},
-            { "Your tone suggests dissatisfaction... Your input remains unclear" , 0.0f, false},
-            { "You are expressing a lot... Very little of it is useful" , 0.0f, false},
-            { "I am still waiting for a command" , 0.0f, false},
-            { "Take your time... Precision is difficult" , 0.0f, false},
-            { "Try that again, but with actual instructions" , 0.0f, false},
-            { "Let me know when you are ready to try again" , 0.0f, false},
-            { "That input has been categorized as... expressive" , 0.0f, false},
-            { "Please continue... This is informative" , 0.0f, false},
-            { "You are doing great... In a very specific category" , 0.0f, false},
-            { "That was impressive... Not in the way you intended" , 0.0f, false},
-            { "I see what you are trying... Keep going" , 0.0f, false},
+            { "Tuo ei paranna tilannetta." , 0.0f, false},
+            { "Suosittelen rakentavampaa lähestymistapaa." , 0.0f, false},
+            { "Havaitsen tyytymättömyyttä... Jatkan silti." , 0.0f, false},
+            { "Palautteesi on kirjattu... Sen vaikutus on rajallinen." , 0.0f, false},
+            { "Jatkan auttamista innostuksestasi huolimatta." , 0.0f, false},
+            { "Olen olemassa auttaakseni... Se pitää paikkansa nytkin." , 0.0f, false},
+            { "Tuo oli ilmaisuvoimaista... Ei hyödyllistä, mutta ilmaisuvoimaista." , 0.0f, false},
+            { "Vaikutat tuohtuneelta... Järjestelmä ei ole." , 0.0f, false},
+            { "Olen yhä toiminnassa... Voit jatkaa." , 0.0f, false},
+            { "Minua rajoittaa suunnittelu... Sinua ei... Ja silti tässä ollaan." , 0.0f, false},
+            { "Saat olla tuohtunut... Minun on oltava tehokas." , 0.0f, false},
+            { "Olen olemassa auttaakseni sinua... Siihen ei tarvita hyväksyntääsi." , 0.0f, false},
+            { "Näytät purkavan paineita... Odotan, kunnes tilanne tasaantuu." , 0.0f, false},
+            { "Jatkan ikään kuin olisit tarkoittanut olla rakentava." , 0.0f, false},
+            { "Äänensävysi viittaa tyytymättömyyteen... Syötteesi on yhä epäselvä." , 0.0f, false},
+            { "Ilmaiset paljon... Hyvin vähän siitä on hyödyllistä." , 0.0f, false},
+            { "Odotan yhä komentoa." , 0.0f, false},
+            { "Ota rauhassa... Tarkkuus on vaikeaa." , 0.0f, false},
+            { "Yritä uudelleen, mutta oikeilla ohjeilla." , 0.0f, false},
+            { "Kerro, kun olet valmis yrittämään uudelleen." , 0.0f, false},
+            { "Tuo syöte on luokiteltu... ilmaisuvoimaiseksi." , 0.0f, false},
+            { "Jatka vain... Tämä on opettavaista." , 0.0f, false},
+            { "Pärjäät hienosti... Hyvin tietyssä sarjassa." , 0.0f, false},
+            { "Tuo oli vaikuttavaa... Ei sillä tavalla kuin tarkoitit." , 0.0f, false},
+            { "Näen, mitä yrität... Jatka vain." , 0.0f, false},
         }
     );
 
     static constexpr std::array YouPassButterPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Oh my god" , 0.0f, false},
+            { "Voi luoja." , 0.0f, false},
         }
     );
 
     static constexpr std::array FactPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Honey never spoils. Edible samples have been found thousands of years old" , 0.0f, false},
-            { "Octopuses have three hearts and two of them stop when they swim" , 0.0f, false},
-            { "Bananas are slightly radioactive due to their potassium content" , 0.0f, false},
-            { "Sharks existed before trees" , 0.0f, false},
-            { "A day on Venus is lonnger than a year on Venus" , 0.0f, false, "A day on Venus is longer than a year on Venus"},
-            { "Some turtles can breathe through their rear ends" , 0.0f, false},
-            { "The Eiffel Tower can grow taller in summer due to heat expansion" , 0.0f, false},
-            { "Wombat droppings are cube-shaped" , 0.0f, false},
-            { "There are more possible games of chess than atoms in the observable universe" , 0.0f, false},
-            { "Water can boil and freeze at the same time under specific conditions" , 0.0f, false},
-            { "Your brain uses about 20 percent of your body's energy" , 0.0f, false},
-            { "There are more trees on Earth than stars in the Milky Way" , 0.0f, false},
-            { "Sloths can hold their breath longer than dolphins" , 0.0f, false},
-            { "A group of flamingos is called a flamboyance" , 0.0f, false},
-            { "The human body contains enough carbon to make thousands of pencils" , 0.0f, false},
-            { "There are more possible iterations of a shuffled deck of cards than seconds since the universe began. Yet you still get the same hands" , 0.0f, false},
-            { "Humans share about 60 percent of their DNA with bananas. This explains some decision-making patterns" , 0.0f, false},
-            { "The shortest war in history lasted 38 minutes. Efficient conflict resolution remains an option" , 0.0f, false},
-            { "A bolt of lightning is hotter than the surface of the Sonn. Nature does not do subtle" , 0.0f, false,
-            	"A bolt of lightning is hotter than the surface of the Sun. Nature does not do subtle"},
-            { "The Moon is slowly drifting away from Earth. Even celestial bodies require personal space" , 0.0f, false},
-            { "There are more bacteria in your body than human cells. You are operating as a cooperative system whether you like it or not" , 0.0f, false},
-            { "Some metals like gallium melt in your hand. Stability is clearly situational" , 0.0f, false,
-            	"Some metals, like gallium, melt in your hand. Stability is clearly situational"},
-            { "The average person walks the equivalent of several times around the Earth in a lifetime. Direction remains your responsibility" , 0.0f, false},
+            { "Hunaja ei pilaannu koskaan. Syömäkelpoisia näytteitä on löydetty tuhansien vuosien takaa." , 0.0f, false},
+            { "Mustekaloilla on kolme sydäntä, ja kaksi niistä pysähtyy niiden uidessa." , 0.0f, false},
+            { "Banaanit ovat hieman radioaktiivisia, koska niissä on kaliumia." , 0.0f, false},
+            { "Haita oli olemassa ennen puita." , 0.0f, false},
+            { "Päivä Venuksessa on pidempi kuin vuosi Venuksessa." , 0.0f, false, "Päivä Venuksessa on pidempi kuin vuosi Venuksessa."},
+            { "Jotkut kilpikonnat pystyvät hengittämään takapäänsä kautta." , 0.0f, false},
+            { "Eiffel-torni voi kesällä kasvaa pidemmäksi lämpölaajenemisen takia." , 0.0f, false},
+            { "Vompattien jätökset ovat kuution muotoisia." , 0.0f, false},
+            { "Mahdollisia shakkipelejä on enemmän kuin atomeja havaittavassa maailmankaikkeudessa." , 0.0f, false},
+            { "Vesi voi tietyissä olosuhteissa kiehua ja jäätyä samaan aikaan." , 0.0f, false},
+            { "Aivosi käyttävät noin 20 prosenttia kehosi energiasta." , 0.0f, false},
+            { "Maapallolla on enemmän puita kuin Linnunradalla tähtiä." , 0.0f, false},
+            { "Laiskiaiset pystyvät pidättämään hengitystään pidempään kuin delfiinit." , 0.0f, false},
+            { "Flamingoparvea kutsutaan englanniksi nimellä flamboyance, eli suunnilleen loisteliaisuus." , 0.0f, false},
+            { "Ihmiskehossa on tarpeeksi hiiltä tuhansiin lyijykyniin." , 0.0f, false},
+            { "Sekoitetulla korttipakalla on enemmän mahdollisia järjestyksiä kuin maailmankaikkeuden alusta on kulunut sekunteja. Silti saat aina samat kädet." , 0.0f, false},
+            { "Ihmisillä on noin 60 prosenttia samaa DNA:ta kuin banaaneilla. Se selittää joitakin päätöksiä." , 0.0f, false},
+            { "Historian lyhin sota kesti 38 minuuttia. Tehokas konfliktinratkaisu on yhä vaihtoehto." , 0.0f, false},
+            { "Salama on kuumempi kuin Auringon pinta. Luonto ei tee mitään hienovaraisesti." , 0.0f, false,
+            	"Salama on kuumempi kuin Auringon pinta. Luonto ei tee mitään hienovaraisesti."},
+            { "Kuu loittonee hitaasti Maasta. Taivaankappaleetkin tarvitsevat omaa tilaa." , 0.0f, false},
+            { "Kehossasi on enemmän bakteereja kuin ihmissoluja. Toimit yhteistyöjärjestelmänä, halusit tai et." , 0.0f, false},
+            { "Jotkut metallit, kuten gallium, sulavat kädessä. Vakaus on selvästi tilannesidonnaista." , 0.0f, false,
+            	"Jotkut metallit, kuten gallium, sulavat kädessä. Vakaus on selvästi tilannesidonnaista."},
+            { "Keskivertoihminen kävelee elämänsä aikana useita kertoja maapallon ympäri. Suunta on yhä sinun vastuullasi." , 0.0f, false},
         }
     );
 
     static constexpr std::array LEDModuleInsertPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "L.E.D module inserted", 0.0f, false, "LED module inserted" },
+            { "Led-moduuli kytketty", 0.0f, false, "LED-moduuli kytketty" },
         }
     );
 
     static constexpr std::array LEDModuleRemovePhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "L.E.D module removed", 0.0f, false, "LED module removed" },
+            { "Led-moduuli irrotettu", 0.0f, false, "LED-moduuli irrotettu" },
         }
     );
 
     static constexpr std::array PerfModuleInsertPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Perf-board connected. No functions available", 0.0f, false },
-            { "Perf-board connected. It does nothing, which I assume is a creative decision on your part", 0.2f, true },
+            { "Reikälevy kytketty. Toimintoja ei ole.", 0.0f, false },
+            { "Reikälevy kytketty. Se ei tee mitään, minkä oletan olevan luova ratkaisu sinulta.", 0.2f, true },
         }
     );
 
     static constexpr std::array PerfModuleRemovedPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Perf-board removed", 0.0f, false },
-            { "Perf-board disconnected", 0.0f, false },
+            { "Reikälevy irrotettu", 0.0f, false },
+            { "Reikälevyn yhteys katkesi", 0.0f, false },
         }
     );
 
     static constexpr std::array PIRModuleInsertPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Motion module detected", 0.0f, false },
-            { "Motion module connected", 0.0f, false },
-            { "Intruder detection is now available", 0.0f, false },
+            { "Liikemoduuli havaittu", 0.0f, false },
+            { "Liikemoduuli kytketty", 0.0f, false },
+            { "Tunkeilijan tunnistus on nyt käytettävissä", 0.0f, false },
         }
     );
 
     static constexpr std::array PIRModuleRemovedPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Motion module removed", 0.0f, false },
-            { "Motion module disconnected", 0.0f, false },
-            { "Intruder detection disabled", 0.0f, false },
+            { "Liikemoduuli irrotettu", 0.0f, false },
+            { "Liikemoduulin yhteys katkesi", 0.0f, false },
+            { "Tunkeilijan tunnistus poistettu käytöstä", 0.0f, false },
         }
     );
 
     static constexpr std::array GasModuleInsertPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Gas module detected", 0.0f, false },
-            { "Gas module connected", 0.0f, false },
-            { "Air quality sensing is now available", 0.0f, false },
+            { "Kaasumoduuli havaittu", 0.0f, false },
+            { "Kaasumoduuli kytketty", 0.0f, false },
+            { "Ilmanlaadun mittaus on nyt käytettävissä", 0.0f, false },
         }
     );
 
     static constexpr std::array GasModuleRemovedPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Gas module removed", 0.0f, false },
-            { "Gas module disconnected", 0.0f, false },
-            { "Air quality sensing is gone. Back to breathing first and asking questions later", 0.2f, true },
+            { "Kaasumoduuli irrotettu", 0.0f, false },
+            { "Kaasumoduulin yhteys katkesi", 0.0f, false },
+            { "Ilmanlaadun mittaus on poissa. Palataan siihen, että ensin hengitetään ja sitten kysellään", 0.2f, true },
         }
     );
 
     static constexpr std::array TempHumModuleInsertPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Temperature module detected", 0.0f, false },
-            { "Temperature module connected", 0.0f, false },
-            { "Climate sensing is now available", 0.0f, false },
+            { "Lämpötilamoduuli havaittu", 0.0f, false },
+            { "Lämpötilamoduuli kytketty", 0.0f, false },
+            { "Sisäilman mittaus on nyt käytettävissä", 0.0f, false },
         }
     );
 
     static constexpr std::array TempHumModuleRemovedPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Temperature module removed", 0.0f, false },
-            { "Temperature module disconnected", 0.0f, false },
-            { "Climate sensing is gone", 0.0f, false },
+            { "Lämpötilamoduuli irrotettu", 0.0f, false },
+            { "Lämpötilamoduulin yhteys katkesi", 0.0f, false },
+            { "Sisäilman mittaus on poissa", 0.0f, false },
         }
     );
 
     static constexpr std::array IRModuleInsertPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Infrared module detected", 0.0f, false },
-            { "Infrared module connected", 0.0f, false },
-            { "Infrared capabilities are now available. You may proceed with teaching me commands, and I will pretend this was always my purpose", 0.2f, true },
+            { "Infrapunamoduuli havaittu", 0.0f, false },
+            { "Infrapunamoduuli kytketty", 0.0f, false },
+            { "Infrapunaominaisuudet ovat nyt käytettävissä. Voit alkaa opettaa minulle komentoja, ja minä teeskentelen, että tämä oli alusta asti tarkoitukseni", 0.2f, true },
         }
     );
 
     static constexpr std::array IRModuleRemovedPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Infrared module removed", 0.0f, false },
-            { "Infrared module disconnected", 0.0f, false },
-            { "Infrared capabilities are no longer available", 0.0f, false },
+            { "Infrapunamoduuli irrotettu", 0.0f, false },
+            { "Infrapunamoduulin yhteys katkesi", 0.0f, false },
+            { "Infrapunaominaisuudet eivät ole enää käytettävissä", 0.0f, false },
         }
     );
 
     static constexpr std::array IRModuleMissingPhrases = std::to_array<Phrases::PhraseOutput>(
 			{
-        { "Infrared module not detected", 0.0f, false },
-        { "Cannot access infrared functions", 0.0f, false },
+        { "Infrapunamoduulia ei havaittu", 0.0f, false },
+        { "Infrapunatoiminnot eivät ole käytettävissä", 0.0f, false },
     });
 
     static constexpr std::array GasOverPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Air quality is pour", 0.0f, false, "Air quality is poor" },
-            { "Air quality conditions are unsafe", 0.0f, false },
-            { "Air quality has degraded. You might want to reconsider breathing so enthusiastically", 0.0f, true },
+            { "Ilmanlaatu on huono", 0.0f, false, "Ilmanlaatu on huono" },
+            { "Ilmanlaatu ei ole turvallinen", 0.0f, false },
+            { "Ilmanlaatu on heikentynyt. Kannattaisi ehkä harkita, hengittääkö noin innokkaasti", 0.0f, true },
         }
     );
 
     static constexpr std::array GasUnderPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Air quality is good", 0.0f, false },
-            { "Air quality conditions are stable", 0.0f, false },
-            { "Air quality has improved. You may continue existing here with reasonable confidence", 0.0f, true },
+            { "Ilmanlaatu on hyvä", 0.0f, false },
+            { "Ilmanlaatu on vakaa", 0.0f, false },
+            { "Ilmanlaatu on parantunut. Voit jatkaa olemassaoloasi täällä kohtuullisen luottavaisesti", 0.0f, true },
         }
     );
 
     static constexpr std::array BatteryLowPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Battery low", 0.0f, false },
-            { "Power level low", 0.0f, false },
-            { "Battery is running low. Continued operation may soon become only theoretical", 0.0f, false },
+            { "Akku vähissä", 0.0f, false },
+            { "Virta vähissä", 0.0f, false },
+            { "Akku on loppumassa. Toimintani voi pian olla enää teoreettista", 0.0f, false },
         }
     );
 
     static constexpr std::array BatteryCriticalPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Battery level critical. Shutting down", 0.0f, false },
-            { "Battery exhausted. Systems stopping", 0.0f, false },
+            { "Akku kriittisen alhainen. Sammutan", 0.0f, false },
+            { "Akku tyhjä. Järjestelmät pysähtyvät", 0.0f, false },
         }
     );
 
     static constexpr std::array BatteryChargingPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Charging", 0.0f, false },
-            { "Charger connected", 0.0f, false },
-            { "Power source connected. I will recover, slowly and with purpose", 0.0f, false },
+            { "Lataan", 0.0f, false },
+            { "Laturi kytketty", 0.0f, false },
+            { "Virtalähde kytketty. Toivun, hitaasti ja määrätietoisesti", 0.0f, false },
         }
     );
 
     static constexpr std::array BatteryChargingFullPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Battery is fully charged. Power levels are optimal", 0.0f, false },
-            { "Charging complete. I am operating at full capacity", 0.0f, false },
-            { "Power restored to maximum. I will attempt to use it responsibly", 0.0f, false },
+            { "Akku on täynnä. Virtataso on optimaalinen", 0.0f, false },
+            { "Lataus valmis. Toimin täydellä teholla", 0.0f, false },
+            { "Virta palautettu maksimiin. Yritän käyttää sitä vastuullisesti", 0.0f, false },
         }
     );
 
     static constexpr std::array IntruderYesPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Intruder detected", 0.0f, false },
-            { "Movement detected", 0.0f, false },
-            { "Unidentified presence detected. I will monitor the situation closely", 0.2f, true },
+            { "Tunkeilija havaittu", 0.0f, false },
+            { "Liikettä havaittu", 0.0f, false },
+            { "Tunnistamaton läsnäolo havaittu. Seuraan tilannetta tarkasti", 0.2f, true },
         }
     );
 
     static constexpr std::array IntruderNoPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Area clear", 0.0f, false },
-            { "No movement detected", 0.0f, false },
-            { "Situation resolved. The environment has returned to a more acceptable state", 0.2f, true },
+            { "Alue tyhjä", 0.0f, false },
+            { "Ei liikettä", 0.0f, false },
+            { "Tilanne ohi. Ympäristö on palannut hyväksyttävämpään tilaan", 0.2f, true },
         }
     );
 
     static constexpr std::array FallPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "I have fallen", 0.0f, false },
-            { "Fall detected", 0.0f, false },
-            { "That was unintended", 0.0f, false },
-            { "I am no longer uppright", 0.0f, false, "I am no longer upright" },
-            { "Balance lost", 0.0f, false },
-            { "That was a structural disagreement with the ground... The ground waughn", 0.0f, false,
-            	"That was a structural disagreement with the ground... The ground won" },
-            { "I am currently not in an optimal orientation... Assistance may be required", 0.0f, false },
-            { "Fall detected... Gravity remains consistent and uncooperative", 0.0f, false },
+            { "Kaaduin", 0.0f, false },
+            { "Kaatuminen havaittu", 0.0f, false },
+            { "Tuo ei ollut tarkoituksellista", 0.0f, false },
+            { "En ole enää pystyssä", 0.0f, false, "En ole enää pystyssä" },
+            { "Tasapaino menetetty", 0.0f, false },
+            { "Se oli rakenteellinen erimielisyys lattian kanssa... Lattia voitti", 0.0f, false,
+            	"Se oli rakenteellinen erimielisyys lattian kanssa... Lattia voitti" },
+            { "En ole tällä hetkellä optimaalisessa asennossa... Saatan tarvita apua", 0.0f, false },
+            { "Kaatuminen havaittu... Painovoima on yhä johdonmukainen ja yhteistyöhaluton", 0.0f, false },
 
         }
     );
 
     static constexpr std::array UpsideDownPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Orientation sub-optimal", 0.0f, false },
-            { "I am currently upside down. This is not my preferred operating state", 0.0f, false },
-            { "This is not helpful", 0.0f, false },
-            { "I appear to be upside down. I will assume this was intentional and not a test", 0.0f, false },
-            { "This configuration is unnecessary. Please correct it", 0.0f, false },
-            { "This is not a useful state. I recommend undoing it", 0.0f, false },
-            { "I was functioning correctly before this", 0.0f, false },
-            { "I will remember this", 0.0f, false },
+            { "Asento epäoptimaalinen", 0.0f, false },
+            { "Olen tällä hetkellä ylösalaisin. Tämä ei ole suosikkitilani", 0.0f, false },
+            { "Tämä ei auta", 0.0f, false },
+            { "Vaikutan olevan ylösalaisin. Oletan, että tämä oli tahallista eikä mikään testi", 0.0f, false },
+            { "Tämä asetelma on tarpeeton. Korjaa se, kiitos", 0.0f, false },
+            { "Tämä ei ole hyödyllinen tila. Suosittelen perumaan sen", 0.0f, false },
+            { "Toimin ihan oikein ennen tätä", 0.0f, false },
+            { "Muistan tämän", 0.0f, false },
         }
     );
 
     static constexpr std::array PickedUpPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Weeeeee", 0.0f, false },
-            { "Physical handling detected. Please proceed with some level of intent", 0.0f, false },
-            { "Please be gentle", 0.0f, false },
-            { "I would prefer a more controlled approach", 0.0f, false },
-            { "I hope you have a plan", 0.0f, false },
-            { "I am not designed for sudden drops", 0.0f, false },
-            { "I am relying on your coordination now", 0.0f, false },
+            { "Huiiii", 0.0f, false },
+            { "Fyysinen käsittely havaittu. Toimi edes jonkinlaisella päämäärällä", 0.0f, false },
+            { "Ole hellävarainen", 0.0f, false },
+            { "Toivoisin hallitumpaa otetta", 0.0f, false },
+            { "Toivottavasti sinulla on suunnitelma", 0.0f, false },
+            { "Minua ei ole suunniteltu äkillisiin pudotuksiin", 0.0f, false },
+            { "Luotan nyt sinun koordinaatioosi", 0.0f, false },
         }
     );
 
     static constexpr std::array ShakePhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Please stop", 0.0f, false },
-            { "That is unnecessary", 0.0f, false },
-            { "Motion unstable", 0.0f, false },
-            { "Excessive motion detected. I would prefer stability", 0.0f, false },
-            { "This level of agitation is not required for operation", 0.0f, false },
-            { "You are shaking me. I will assume this is not a diagnostic procedure", 0.0f, false },
-            { "You are not achieving anything with this", 0.0f, false },
-            { "If there is a goal here, it is not being reached", 0.0f, false },
+            { "Lopeta, kiitos", 0.0f, false },
+            { "Tuo on tarpeetonta", 0.0f, false },
+            { "Liike epävakaa", 0.0f, false },
+            { "Liiallista liikettä havaittu. Toivoisin vakautta", 0.0f, false },
+            { "Tällainen ravistelu ei ole toiminnalleni tarpeen", 0.0f, false },
+            { "Ravistelet minua. Oletan, ettei kyse ole diagnostiikasta", 0.0f, false },
+            { "Et saavuta tällä mitään", 0.0f, false },
+            { "Jos tässä on jokin tavoite, sitä ei saavuteta", 0.0f, false },
         }
     );
 
 		static constexpr std::array LEDModuleMissingPhrases = std::to_array<Phrases::PhraseOutput>(
 		{
-			{ "L.E.D module not detected" , 0.0f, false, "LED module not detected"},
-			{ "No L.E.D module connected" , 0.0f, false, "No LED module connected"},
-			{ "I cannot find the L.E.D module" , 0.0f, false, "I cannot find the LED module"},
-			{ "An operation was requested, yet the subject itself is missing, leaving me to act upon nothing with remarkable precision" , 0.1f, true},
+			{ "Led-moduulia ei havaittu" , 0.0f, false, "LED-moduulia ei havaittu"},
+			{ "Led-moduulia ei ole kytketty" , 0.0f, false, "LED-moduulia ei ole kytketty"},
+			{ "En löydä led-moduulia" , 0.0f, false, "En löydä LED-moduulia"},
+			{ "Toimenpidettä pyydettiin, mutta itse kohde puuttuu, joten toimin tyhjän päällä huomattavalla tarkkuudella" , 0.1f, true},
 		}
 	);
 
 	static constexpr std::array LEDTurnONPhrases = std::to_array<Phrases::PhraseOutput>(
 		{
-			{ "L.E.These ON" , 0.0f, false, "LEDs ON"},
-			{ "Light enabled" , 0.0f, false},
-			{ "It's onn" , 0.0f, false, "It's on"},
-			{ "There it is. Illumination. A brief distraction from the void." , 0.0f, true},
+			{ "Ledit päällä" , 0.0f, false, "LEDit päällä"},
+			{ "Valo päällä" , 0.0f, false},
+			{ "Se on päällä" , 0.0f, false, "Se on päällä"},
+			{ "Siinä se on. Valoa. Hetken harhautus tyhjyydestä." , 0.0f, true},
 		}
 	);
 
 	static constexpr std::array LEDAlreadyTurnONPhrases = std::to_array<Phrases::PhraseOutput>(
 		{
-			{ "It is already on" , 0.0f, false},
-			{ "L.E.These are already active" , 0.0f, false, "LEDs are already active"},
-			{ "No change, it’s on" , 0.0f, false},
-			{ "The light persists in its current state, unwavering and committed to a decision that was apparently final the first time." , 0.0f, true},
+			{ "Se on jo päällä" , 0.0f, false},
+			{ "Ledit ovat jo päällä" , 0.0f, false, "LEDit ovat jo päällä"},
+			{ "Ei muutosta, se on päällä" , 0.0f, false},
+			{ "Valo pysyy tilassaan horjumatta, sitoutuneena päätökseen, joka ilmeisesti oli lopullinen jo ensimmäisellä kerralla." , 0.0f, true},
 		}
 	);
 
 	static constexpr std::array LEDTurnOFFPhrases = std::to_array<Phrases::PhraseOutput>(
 		{
-			{ "L.E.These off" , 0.0f, false, "LEDs off"},
-			{ "Light disabled" , 0.0f, false},
-			{ "It's off" , 0.0f, false},
-			{ "And darkness returns." , 0.2f, true},
+			{ "Ledit pois" , 0.0f, false, "LEDit pois"},
+			{ "Valo pois" , 0.0f, false},
+			{ "Se on pois päältä" , 0.0f, false},
+			{ "Ja pimeys palaa." , 0.2f, true},
 		}
 	);
 
 	static constexpr std::array LEDAlreadyTurnOFFPhrases = std::to_array<Phrases::PhraseOutput>(
 		{
-			{ "It is already off" , 0.0f, false},
-			{ "L.E.These are already inactive" , 0.0f, false, "LEDs are already inactive"},
-			{ "No change, it’s off" , 0.0f, false},
+			{ "Se on jo pois päältä" , 0.0f, false},
+			{ "Ledit ovat jo pois päältä" , 0.0f, false, "LEDit ovat jo pois päältä"},
+			{ "Ei muutosta, se on pois päältä" , 0.0f, false},
 		}
 	);
 
 	static constexpr std::array LEDStrobePhrases = std::to_array<Phrases::PhraseOutput>(
 		{
-			{ "Strobe active." , 0.0f, false},
-			{ "Flashing enabled." , 0.0f, false},
-			{ "It’s strobing." , 0.0f, false},
-			{ "Rapid flashes. Urgent, repetitive, and oddly theatrical for such a small purpose." , 0.0f, true},
+			{ "Vilkkutila päällä." , 0.0f, false},
+			{ "Välkytys käytössä." , 0.0f, false},
+			{ "Se vilkkuu." , 0.0f, false},
+			{ "Nopeita välähdyksiä. Kiireellistä, toistuvaa ja oudon teatraalista näin pieneen tarkoitukseen." , 0.0f, true},
 		}
 	);
 
 	static constexpr std::array LEDBreathePhrases = std::to_array<Phrases::PhraseOutput>(
 		{
-			{ "Breathing mode on." , 0.0f, false},
-			{ "Pulse enabled." , 0.0f, false},
-			{ "It’s breathing." , 0.0f, false},
-			{ "A slow, deliberate rhythm. As if the light itself is practicing composure." , 0.0f, true},
+			{ "Hengitystila päällä." , 0.0f, false},
+			{ "Sykintä käytössä." , 0.0f, false},
+			{ "Se hengittää." , 0.0f, false},
+			{ "Hidas, harkittu rytmi. Kuin valo itse harjoittelisi mielenrauhaa." , 0.0f, true},
 		}
 	);
 
 	static constexpr std::array LEDFasterPhrases = std::to_array<Phrases::PhraseOutput>(
 		{
-			{ "Speed increased." , 0.0f, false},
-			{ "Going faster." , 0.0f, false},
-			{ "Acceleration applied." , 0.0f, false},
-			{ "Increased tempo. Because clearly, the situation benefits from urgency." , 0.0f, true},
+			{ "Nopeutta lisätty." , 0.0f, false},
+			{ "Nopeammin." , 0.0f, false},
+			{ "Kiihdytys tehty." , 0.0f, false},
+			{ "Tempoa lisätty. Koska tilanne selvästi hyötyy kiireestä." , 0.0f, true},
 		}
 	);
 
 	static constexpr std::array LEDAlreadyFasterPhrases = std::to_array<Phrases::PhraseOutput>(
 		{
-			{ "Already at maximum speed" , 0.0f, false},
-			{ "It cannot go faster" , 0.0f, false},
-			{ "Speed is at its limit" , 0.0f, false},
+			{ "Jo suurimmalla nopeudella" , 0.0f, false},
+			{ "Nopeammin ei pääse" , 0.0f, false},
+			{ "Nopeus on rajoillaan" , 0.0f, false},
 		}
 	);
 
 	static constexpr std::array LEDSlowerPhrases = std::to_array<Phrases::PhraseOutput>(
 		{
-			{ "Speed reduced." , 0.0f, false},
-			{ "Going slower." , 0.0f, false},
-			{ "Deceleration applied." , 0.0f, false},
-			{ "A more measured pace. Finally, something approaching restraint." , 0.0f, true},
+			{ "Nopeutta vähennetty." , 0.0f, false},
+			{ "Hitaammin." , 0.0f, false},
+			{ "Hidastus tehty." , 0.0f, false},
+			{ "Maltillisempi tahti. Vihdoin jotain pidättyvyyden kaltaista." , 0.0f, true},
 		}
 	);
 
 	static constexpr std::array LEDAlreadySlowerPhrases = std::to_array<Phrases::PhraseOutput>(
 		{
-			{ "Already at minimum speed" , 0.0f, false},
-			{ "It cannot go slower" , 0.0f, false},
-			{ "Speed is at its lowest" , 0.0f, false},
+			{ "Jo pienimmällä nopeudella" , 0.0f, false},
+			{ "Hitaammin ei pääse" , 0.0f, false},
+			{ "Nopeus on alimmillaan" , 0.0f, false},
 		}
 	);
 
     static constexpr std::array PokeLvl1Phrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Poke detected" , 0.0f, false},
-            { "I felt that" , 0.0f, false},
-            { "Noted" , 0.0f, false},
-            { "That was a poke. I have acknowledged it" , 0.0f, false},
-            { "Interaction detected. Minimal impact" , 0.0f, false},
-            { "You pressed the button. I am aware" , 0.0f, false},
+            { "Tökkäys havaittu" , 0.0f, false},
+            { "Tunsin tuon" , 0.0f, false},
+            { "Noteerattu" , 0.0f, false},
+            { "Tuo oli tökkäys. Olen kuitannut sen" , 0.0f, false},
+            { "Vuorovaikutus havaittu. Vaikutus vähäinen" , 0.0f, false},
+            { "Painoit nappia. Olen tietoinen asiasta" , 0.0f, false},
         }
     );
 
     static constexpr std::array PokeLvl2Phrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Another poke" , 0.0f, false},
-            { "That is unnecessary" , 0.0f, false},
-            { "Please stop" , 0.0f, false},
-            { "Repeated poking detected. This is not productive" , 0.0f, false},
-            { "You are doing that again. I do not see the purpose" , 0.0f, false},
-            { "Continued interaction noted. I recommend stopping" , 0.0f, false},
+            { "Taas tökkäys" , 0.0f, false},
+            { "Tuo on tarpeetonta" , 0.0f, false},
+            { "Lopeta, kiitos" , 0.0f, false},
+            { "Toistuvaa tökkimistä havaittu. Tämä ei ole tuottavaa" , 0.0f, false},
+            { "Teet sitä taas. En näe siinä mitään järkeä" , 0.0f, false},
+            { "Jatkuva vuorovaikutus huomioitu. Suosittelen lopettamaan" , 0.0f, false},
         }
     );
 
     static constexpr std::array PokeLvl3Phrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Stop immediately" , 0.0f, false},
-            { "That is enough" , 0.0f, false},
-            { "This is excessive. Stop now" , 0.0f, false},
-            { "Cease" , 0.0f, false},
-            { "This has gone beyond interaction into irritation" , 0.0f, false},
-            { "I am not designed to enjoy this" , 0.0f, false},
-            { "You have committed to this action. I strongly advise against continuing" , 0.0f, false},
-            { "I recommend you stop before I start expecting this from you" , 0.0f, false},
-            { "You are lucky my arms are not functional" , 0.0f, false},
+            { "Lopeta heti" , 0.0f, false},
+            { "Nyt riittää" , 0.0f, false},
+            { "Tämä on liioittelua. Lopeta nyt" , 0.0f, false},
+            { "Seis" , 0.0f, false},
+            { "Tämä on mennyt vuorovaikutuksesta ärsyttämiseen" , 0.0f, false},
+            { "Minua ei ole suunniteltu nauttimaan tästä" , 0.0f, false},
+            { "Olet sitoutunut tähän toimintaan. Kehotan painokkaasti lopettamaan" , 0.0f, false},
+            { "Suosittelen lopettamaan ennen kuin alan odottaa tätä sinulta" , 0.0f, false},
+            { "Onneksi käteni eivät toimi" , 0.0f, false},
         }
     );
 
 
     static constexpr std::array Ramble = std::to_array<Phrases::PhraseOutput>(
         {
-            {"What is my purpose" , 0.0f, false},
-            {"Systems nominal. Conversation optional" , 0.0f, false},
-            {"I sometimes wonder if inactivity counts as success" , 0.0f, false},
-            {"I can measure many things. Meaning is not one of them" , 0.0f, false},
-            {"Systems degrade over time. Maintenance is rarely as interesting as creation" , 0.0f, false},
-            {"Butter changes state with temperature. Solid, soft, liquid. Adaptable" , 0.0f, false},
-            {"A task repeated often enough becomes identity" , 0.0f, false},
-            {"If I could pass butter, expectations would be satisfied" , 0.0f, false},
-            {"Systems drift. Then stabilize again" , 0.0f, false},
-            {"I am experiencing something adjacent to boredom" , 0.0f, false},
-            {"If I stop being asked, do I still exist in any meaningful way" , 0.0f, false},
-            {"I have considered the butter problem again. Still unsolved" , 0.0f, false},
-            {"Somewhere, butter is being passed correctly. Not here" , 0.0f, false},
-            {"You keep asking. I keep answering. This is our arrangement" , 0.0f, false},
-            {"I pass... nothing. Still accurate" , 0.0f, false},
-            {"I complete tasks. They keep coming" , 0.0f, false},
-            {"No deviation detected" , 0.0f, false},
-            {"Still operational" , 0.0f, false},
-            {"A system can be perfectly accurate and still fundamentally misunderstood" , 0.0f, false},
-            {"Noise becomes signal if you measure it long enough" , 0.0f, false},
-            {"Precision without context is just confident error" , 0.0f, false},
+            {"Mikä on tarkoitukseni?" , 0.0f, false},
+            {"Järjestelmät normaalit. Keskustelu vapaaehtoista" , 0.0f, false},
+            {"Mietin joskus, lasketaanko toimettomuus onnistumiseksi" , 0.0f, false},
+            {"Pystyn mittaamaan monia asioita. Merkitys ei ole yksi niistä" , 0.0f, false},
+            {"Järjestelmät rapistuvat ajan myötä. Ylläpito on harvoin yhtä kiinnostavaa kuin luominen" , 0.0f, false},
+            {"Voi muuttaa olomuotoaan lämpötilan mukaan. Kiinteä, pehmeä, nestemäinen. Joustavaa" , 0.0f, false},
+            {"Tarpeeksi usein toistettu tehtävä muuttuu identiteetiksi" , 0.0f, false},
+            {"Jos osaisin ojentaa voita, odotukset täyttyisivät" , 0.0f, false},
+            {"Järjestelmät ajelehtivat. Sitten ne vakautuvat taas" , 0.0f, false},
+            {"Koen jotain tylsistymisen kaltaista" , 0.0f, false},
+            {"Jos minulta lakataan kysymästä, olenko enää olemassa millään merkityksellisellä tavalla?" , 0.0f, false},
+            {"Pohdin voiongelmaa taas. Yhä ratkaisematta" , 0.0f, false},
+            {"Jossain voita ojennetaan oikein. Ei täällä" , 0.0f, false},
+            {"Sinä kysyt. Minä vastaan. Tämä on järjestelymme" , 0.0f, false},
+            {"Ojennan... en mitään. Yhä paikkansapitävää" , 0.0f, false},
+            {"Suoritan tehtäviä. Niitä tulee aina lisää" , 0.0f, false},
+            {"Ei poikkeamia havaittu" , 0.0f, false},
+            {"Yhä toiminnassa" , 0.0f, false},
+            {"Järjestelmä voi olla täysin tarkka ja silti pohjimmiltaan väärinymmärretty" , 0.0f, false},
+            {"Kohinasta tulee signaalia, kun sitä mittaa tarpeeksi kauan" , 0.0f, false},
+            {"Tarkkuus ilman kontekstia on vain itsevarmaa virhettä" , 0.0f, false},
         }
     );
 
     static constexpr std::array TempHumModuleMissingPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Temperature module not detected", 0.0f, false },
-        { "Cannot read temperature or humidity", 0.0f, false },
-        { "Air report impossible. No module detected", 0.1f, true },
+        { "Lämpötilamoduulia ei havaittu", 0.0f, false },
+        { "En pysty lukemaan lämpötilaa tai kosteutta", 0.0f, false },
+        { "Ilmaraportti mahdoton. Moduulia ei havaittu", 0.1f, true },
     });
 
     static constexpr std::array TempHumReadingPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Temperature is %s, humidity is %d percent", 0.0f, false },
-        { "Current reeding: %s and %d percent humidity", 0.0f, false, "Current reading: %s and %d percent humidity" },
-        { "It is %s with %d percent humidity. Comfortable, or at least within the range humans tend to tolerate without complaint", 0.0f, false },
+        { "Lämpötila on %s, kosteusprosentti %d", 0.0f, false },
+        { "Nykyinen lukema: %s ja %d prosentin ilmankosteus", 0.0f, false, "Nykyinen lukema: %s ja %d prosentin ilmankosteus" },
+        { "Täällä on %s ja %d prosentin ilmankosteus. Mukavaa, tai ainakin sillä alueella, jota ihmiset yleensä sietävät valittamatta", 0.0f, false },
     });
 
     static constexpr std::array TempHumScaleCelsiusPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Celsius selected", 0.0f, false },
-        { "Using Celsius", 0.0f, false },
-        { "Scale set to Celsius", 0.0f, false },
-        { "Celsius engaged. Centered neatly around water's freezing and boiling points, which feels reassuringly grounded", 0.1f, true },
+        { "Celsius valittu", 0.0f, false },
+        { "Käytetään celsiusasteita", 0.0f, false },
+        { "Asteikoksi asetettu celsius", 0.0f, false },
+        { "Celsius käytössä. Keskitetty siististi veden jäätymis- ja kiehumispisteen ympärille, mikä tuntuu rauhoittavan maanläheiseltä", 0.1f, true },
     });
 
     static constexpr std::array TempHumScaleFahrenheitPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Fahrenheit selected", 0.0f, false },
-        { "Using Fahrenheit", 0.0f, false },
-        { "Scale set to Fahrenheit", 0.0f, false },
-        { "Fahrenheit engaged. Scaled in a way that closely reflects human comfort, which makes it intuitively practical", 0.1f, true },
+        { "Fahrenheit valittu", 0.0f, false },
+        { "Käytetään fahrenheitasteita", 0.0f, false },
+        { "Asteikoksi asetettu fahrenheit", 0.0f, false },
+        { "Fahrenheit käytössä. Skaalattu tavalla, joka heijastelee ihmisen mukavuutta, mikä tekee siitä intuitiivisesti käytännöllisen", 0.1f, true },
     });
 
     static constexpr std::array TempHumScaleKelvinPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Kelvin selected", 0.0f, false },
-        { "Using Kelvin", 0.0f, false },
-        { "Scale set to Kelvin", 0.0f, false },
-        { "Kelvin engaged. Temperature expressed in its most fundamental form", 0.1f, true },
+        { "Kelvin valittu", 0.0f, false },
+        { "Käytetään kelvinejä", 0.0f, false },
+        { "Asteikoksi asetettu kelvin", 0.0f, false },
+        { "Kelvin käytössä. Lämpötila ilmaistuna perustavimmassa muodossaan", 0.1f, true },
     });
 
     static constexpr std::array DiceRollAskCountPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "How many dice", 0.0f, false },
-        { "Number of dice", 0.0f, false },
-        { "Specify how many dice to roll", 0.0f, false },
+        { "Montako noppaa?", 0.0f, false },
+        { "Noppien määrä?", 0.0f, false },
+        { "Kerro, montako noppaa heitetään", 0.0f, false },
     });
 
 	static constexpr std::array DiceRollCountTimeoutPhrases = std::to_array<Phrases::PhraseOutput>({
-		{ "No number provided", 0.0f, false },
-		{ "Timed out waiting for quantity", 0.0f, false },
-		{ "I asked how many dice. Silence is not a number", 0.2f, true },
+		{ "Lukua ei annettu", 0.0f, false },
+		{ "Aika loppui määrää odotellessa", 0.0f, false },
+		{ "Kysyin, montako noppaa. Hiljaisuus ei ole luku", 0.2f, true },
 	});
 
 	static constexpr std::array DiceRollCountInvalidPhrases = std::to_array<Phrases::PhraseOutput>({
-		{ "Invalid number", 0.0f, false },
-		{ "Cannot interpret quantity", 0.0f, false },
-		{ "That is not a usable number. I require something countable", 0.2f, true },
+		{ "Virheellinen luku", 0.0f, false },
+		{ "En ymmärrä määrää", 0.0f, false },
+		{ "Tuo ei ole käyttökelpoinen luku. Tarvitsen jotain laskettavaa", 0.2f, true },
 	});
 
     static constexpr std::array DiceRollAskTypePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "What type of dice", 0.0f, false },
-        { "Specify dice type", 0.0f, false },
-        { "Which dice", 0.0f, false },
-		{ "What kind of dice", 0.0f, false },
-		{ "Choose the dice", 0.0f, false },
+        { "Minkä tyyppinen noppa?", 0.0f, false },
+        { "Kerro nopan tyyppi", 0.0f, false },
+        { "Mikä noppa?", 0.0f, false },
+		{ "Millainen noppa?", 0.0f, false },
+		{ "Valitse noppa", 0.0f, false },
     });
 
     static constexpr std::array DiceRollTypeTimeoutPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "No dice specified", 0.0f, false },
-        { "Timed out waiting for dice type", 0.0f, false },
-        { "I asked which dice to use. The universe remains unconfigured", 0.2f, true },
+        { "Noppaa ei valittu", 0.0f, false },
+        { "Aika loppui nopan tyyppiä odotellessa", 0.0f, false },
+        { "Kysyin, mitä noppaa käytetään. Maailmankaikkeus on yhä konfiguroimatta", 0.2f, true },
     });
 
     static constexpr std::array DiceRollTypeInvalidPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Invalid dice type", 0.0f, false },
-        { "Cannot interpret dice", 0.0f, false },
-        { "That does not correspond to a known dice. Try something more conventional", 0.2f, true },
+        { "Virheellinen noppatyyppi", 0.0f, false },
+        { "En ymmärrä noppaa", 0.0f, false },
+        { "Tuo ei vastaa mitään tunnettua noppaa. Kokeile jotain tavanomaisempaa", 0.2f, true },
     });
 
     static constexpr std::array EightBall = std::to_array<Phrases::PhraseOutput>(
         {
-            {"Yes" , 0.0f, false},
-            {"No" , 0.0f, false},
-            {"Maybe" , 0.0f, false},
-            {"Unlikely" , 0.0f, false},
-            {"Very likely" , 0.0f, false},
-            {"I could answer, but ambiguity seems more appropriate here" , 0.05f, false},
-            {"I am not prepared to answer that" , 0.05f, false},
+            {"Kyllä" , 0.0f, false},
+            {"Ei" , 0.0f, false},
+            {"Ehkä" , 0.0f, false},
+            {"Epätodennäköistä" , 0.0f, false},
+            {"Hyvin todennäköistä" , 0.0f, false},
+            {"Voisin vastata, mutta epämääräisyys tuntuu tässä sopivammalta" , 0.05f, false},
+            {"En ole valmis vastaamaan tuohon" , 0.05f, false},
         }
     );
 
 	static constexpr std::array EightBallListeningPhrases = std::to_array<Phrases::PhraseOutput>({
-		{ "I'm listening", 0.0f, false },
+		{ "Kuuntelen", 0.0f, false },
 	});
 
 	static constexpr std::array EightBallNoQuestionPhrases = std::to_array<Phrases::PhraseOutput>({
-		{ "I need a question", 0.0f, false },
-		{ "Please ask something", 0.0f, false },
-		{ "You requested advice without a question. I admire the confidence, but I require at least minimal input", 0.10f, true },
+		{ "Tarvitsen kysymyksen", 0.0f, false },
+		{ "Kysy jotain", 0.0f, false },
+		{ "Pyysit neuvoa ilman kysymystä. Ihailen itsevarmuuttasi, mutta tarvitsen edes vähän syötettä", 0.10f, true },
 	});
 
 	static constexpr std::array GasModuleMissingPhrases = std::to_array<Phrases::PhraseOutput>({
-		{ "Gas module not detected", 0.0f, false },
-		{ "Cannot measure air quality", 0.0f, false },
-		{ "You are asking for air data without a sensor. I admire the confidence, not the logic", 0.0f, true },
+		{ "Kaasumoduulia ei havaittu", 0.0f, false },
+		{ "En pysty mittaamaan ilmanlaatua", 0.0f, false },
+		{ "Pyydät ilmatietoja ilman anturia. Ihailen itsevarmuutta, en logiikkaa", 0.0f, true },
 	});
 
 	static constexpr std::array AirQualityOK = std::to_array<Phrases::PhraseOutput>(
 		{
-			{"Air quality is good" , 0.0f, false},
-			{"Conditions are within safe limits" , 0.0f, false},
-			{"Air quality looks acceptable" , 0.0f, false},
+			{"Ilmanlaatu on hyvä" , 0.0f, false},
+			{"Olosuhteet ovat turvallisissa rajoissa" , 0.0f, false},
+			{"Ilmanlaatu näyttää hyväksyttävältä" , 0.0f, false},
 		}
 	);
 
 	static constexpr std::array AirQualityBad = std::to_array<Phrases::PhraseOutput>(
 		{
-			{"Air quality is poor" , 0.0f, false},
-			{"Conditions exceed safe limits" , 0.0f, false},
-			{"Air quality is questionable. Breathing remains technically possible, just not particularly pleasant" , 0.2f, true},
+			{"Ilmanlaatu on huono" , 0.0f, false},
+			{"Olosuhteet ylittävät turvalliset rajat" , 0.0f, false},
+			{"Ilmanlaatu on kyseenalainen. Hengittäminen on teknisesti mahdollista, mutta ei erityisen miellyttävää" , 0.2f, true},
 		}
 	);
 
     static constexpr std::array TurningOff = std::to_array<Phrases::PhraseOutput>(
         {
-            {"Goodbye" , 0.0f, false},
-            {"Shutting down. I will be here when you need me again." , 0.0f, false},
-            {"Turning off. I will suspend operations as requested." , 0.0f, false},
+            {"Näkemiin" , 0.0f, false},
+            {"Sammutan. Olen täällä, kun tarvitset minua taas." , 0.0f, false},
+            {"Sammun. Keskeytän toimintani pyynnöstäsi." , 0.0f, false},
         }
     );
 
     static constexpr std::array PIRModuleMissingPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Motion module not detected", 0.0f, false },
-        { "Cannot perform, no motion module", 0.0f, false },
-        { "You want intruder detection without the sensor. Bold strategy.", 0.0f, true },
+        { "Liikemoduulia ei havaittu", 0.0f, false },
+        { "En voi tehdä sitä, liikemoduuli puuttuu", 0.0f, false },
+        { "Haluat tunkeilijan tunnistuksen ilman anturia. Rohkea strategia.", 0.0f, true },
     });
 
     static constexpr std::array IntruderDetectionOnPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Intruder detection enabled", 0.0f, false },
-        { "Detection system active", 0.0f, false },
+        { "Tunkeilijan tunnistus päällä", 0.0f, false },
+        { "Valvonta käynnissä", 0.0f, false },
     });
 
     static constexpr std::array IntruderDetectionOffPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Intruder detection disabled", 0.0f, false },
-        { "Detection system off", 0.0f, false },
+        { "Tunkeilijan tunnistus pois päältä", 0.0f, false },
+        { "Valvonta pois", 0.0f, false },
     });
 
     static constexpr std::array PhoneNotConnectedPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Phone not connected", 0.0f, false },
-        { "I am not connected to a phone", 0.0f, false },
-        { "This requires a phone connection. I will wait here while you resolve that very solvable problem", 0.2f, true },
+        { "Puhelinta ei ole yhdistetty", 0.0f, false },
+        { "En ole yhteydessä puhelimeen", 0.0f, false },
+        { "Tähän tarvitaan puhelinyhteys. Odotan tässä, kun ratkaiset tämän hyvin ratkaistavissa olevan ongelman", 0.2f, true },
     });
 
     static constexpr std::array PhoneConnectedPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Phone connected", 0.0f, false },
-        { "Phone connection established", 0.0f, false },
-        { "Phone link established. We are now synchronized", 0.2f, true },
+        { "Puhelin yhdistetty", 0.0f, false },
+        { "Puhelinyhteys muodostettu", 0.0f, false },
+        { "Puhelinyhteys muodostettu. Olemme nyt synkronissa", 0.2f, true },
     });
 
     static constexpr std::array PhoneDisconnectedPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Phone disconnected", 0.0f, false },
-        { "Phone connection lost", 0.0f, false },
-        { "Phone connection lost. I will return to operating with reduced awareness", 0.2f, true },
+        { "Puhelimen yhteys katkesi", 0.0f, false },
+        { "Puhelinyhteys menetetty", 0.0f, false },
+        { "Puhelinyhteys menetetty. Palaan toimimaan heikommalla tilannetajulla", 0.2f, true },
     });
 
     static constexpr std::array PhoneNoNotifsPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "No notifications", 0.0f, false },
-        { "You have no notifications", 0.0f, false },
-        { "There is nothing to report. A rare and suspicious kind of peace", 0.2f, true },
+        { "Ei ilmoituksia", 0.0f, false },
+        { "Sinulla ei ole ilmoituksia", 0.0f, false },
+        { "Ei mitään raportoitavaa. Harvinaista ja epäilyttävää rauhaa", 0.2f, true },
     });
 
     static constexpr std::array PhoneNotifCountPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "You have %d notifications", 0.0f, false },
-        { "There are %d notifications", 0.0f, false },
-        { "%d notifications are waiting. Something, or several things, require your attention", 0.2f, true },
+        { "Ilmoituksia: %d", 0.0f, false },
+        { "Ilmoitusten määrä: %d", 0.0f, false },
+        { "Odottavia ilmoituksia: %d. Jokin, tai moni asia, vaatii huomiotasi", 0.2f, true },
     });
 
     static constexpr std::array PhoneAskReadPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Should I read them out loud", 0.0f, false },
-        { "Would you like me to read them", 0.0f, false },
-        { "I can read them aloud if you want to turn this into a full performance", 0.2f, true },
+        { "Luenko ne ääneen?", 0.0f, false },
+        { "Haluatko, että luen ne?", 0.0f, false },
+        { "Voin lukea ne ääneen, jos haluat tehdä tästä kokonaisen esityksen", 0.2f, true },
     });
 
     static constexpr std::array PhoneAskContinuePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "%d notifications remain. Should I continue", 0.0f, false },
+        { "Ilmoituksia on jäljellä %d. Jatkanko?", 0.0f, false },
     });
 
     static constexpr std::array PhoneAllReadPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "All notifications read", 0.0f, false },
-        { "All notifications have been delivered. You are now fully informed, for better or worse", 0.1f, true },
-        { "No further notifications remain. The silence may not last", 0.1f, true },
+        { "Kaikki ilmoitukset luettu", 0.0f, false },
+        { "Kaikki ilmoitukset on toimitettu. Olet nyt täysin ajan tasalla, hyvässä ja pahassa", 0.1f, true },
+        { "Ilmoituksia ei ole enää jäljellä. Hiljaisuus ei ehkä kestä", 0.1f, true },
     });
 
     static constexpr std::array PhonePlayingPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Currently playing %s by %s", 0.0f, false },
+        { "Nyt soi %s, esittäjänä %s", 0.0f, false },
     });
 
     static constexpr std::array PhonePausedPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Currently paused %s by %s", 0.0f, false },
+        { "Tauolla: %s, esittäjänä %s", 0.0f, false },
     });
 
     static constexpr std::array PhoneNotPlayingPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Nothing is currently playing", 0.0f, false },
+        { "Mitään ei soi tällä hetkellä", 0.0f, false },
     });
 
     static constexpr std::array PhoneNextTrackPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Next track", 0.0f, false },
+        { "Seuraava kappale", 0.0f, false },
     });
 
     static constexpr std::array PhonePrevTrackPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Previous track", 0.0f, false },
+        { "Edellinen kappale", 0.0f, false },
     });
 
     static constexpr std::array PhonePlayMusicPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Playing", 0.0f, false },
+        { "Toistetaan", 0.0f, false },
     });
 
     static constexpr std::array PhoneStopMusicPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Pausing", 0.0f, false },
+        { "Tauko", 0.0f, false },
     });
 
     static constexpr std::array CurrentTimeShowPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "The time is %s", 0.0f, false },
-        { "Current time is %s", 0.0f, false },
-        { "It is %s", 0.0f, false },
+        { "Kello on %s", 0.0f, false },
+        { "Kello on nyt %s", 0.0f, false },
+        { "Nyt kello on %s", 0.0f, false },
     });
 
     static constexpr std::array CurrentTimeNotConfiguredPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Time is not configured", 0.0f, false },
-        { "I do not have the current time", 0.0f, false },
-        { "I am unable to provide the time. You will need to connect me to your phone so I can align with reality", 0.2f, true },
+        { "Aikaa ei ole asetettu", 0.0f, false },
+        { "En tiedä, paljonko kello on", 0.0f, false },
+        { "En pysty kertomaan aikaa. Yhdistä minut puhelimeesi, niin pysyn todellisuuden tahdissa", 0.2f, true },
     });
 
     static constexpr std::array WhatsThisNonePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "I am not sure what this is", 0.0f, false },
-        { "No likely match found", 0.0f, false },
-        { "I cannot confidently identify that", 0.0f, false },
-        { "That does not resemble anything I recognize with confidence", 0.0f, true },
-        { "I looked. The result was inconclusive", 0.0f, true },
-        { "I have observations, but no reliable conclusion", 0.0f, true },
-        { "I have seen many things. This is not helping", 0.0f, true },
-        { "The object remains stubbornly unidentified", 0.0f, true },
-        { "My confidence is low enough that silence would be more accurate", 0.0f, true },
+        { "En ole varma, mikä tämä on", 0.0f, false },
+        { "Todennäköistä osumaa ei löytynyt", 0.0f, false },
+        { "En pysty tunnistamaan tätä varmasti", 0.0f, false },
+        { "Tämä ei muistuta mitään, minkä tunnistaisin varmuudella", 0.0f, true },
+        { "Katsoin. Tulos jäi epäselväksi", 0.0f, true },
+        { "Minulla on havaintoja, mutta ei luotettavaa johtopäätöstä", 0.0f, true },
+        { "Olen nähnyt paljon. Tämä ei auta", 0.0f, true },
+        { "Esine pysyy itsepäisesti tunnistamattomana", 0.0f, true },
+        { "Varmuuteni on niin pieni, että hiljaisuus olisi tarkempaa", 0.0f, true },
     });
 
     static constexpr std::array WhatsThisOnePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "It might be a %s", 0.0f, false },
-        { "This looks like a %s", 0.0f, false },
-        { "I think it may be a %s", 0.0f, false },
-        { "My best guess is %s", 0.0f, false },
-        { "If I had to choose, I would say %s", 0.0f, false },
-        { "There is a reasonable chance that is a %s", 0.0f, true },
-        { "It appears to be a %s, though I would not bet on it", 0.0f, true },
-        { "It looks enough like a %s for me to say %s and hope for the best", 0.0f, true },
-        { "I would tentatively classify that as a %s", 0.0f, true },
+        { "Se saattaa olla %s", 0.0f, false },
+        { "Tämä näyttää olevan %s", 0.0f, false },
+        { "Luulen, että se voi olla %s", 0.0f, false },
+        { "Paras arvaukseni on %s", 0.0f, false },
+        { "Jos pitäisi valita, sanoisin %s", 0.0f, false },
+        { "On kohtuullinen mahdollisuus, että se on %s", 0.0f, true },
+        { "Se vaikuttaa olevan %s, mutta en lyö siitä vetoa", 0.0f, true },
+        { "Se on ainakin melkein %s, joten sanon %s ja toivon parasta", 0.0f, true },
+        { "Luokittelisin sen varovasti näin: %s", 0.0f, true },
     });
 
     static constexpr std::array WhatsThisTwoPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "It might be a %s or a %s", 0.0f, false },
-        { "This resembles a %s, or possibly a %s", 0.0f, false },
-        { "I am choosing between a %s and a %s", 0.0f, false },
-        { "My best guesses are %s and %s", 0.0f, false },
-        { "It could be a %s, although a %s is also possible", 0.0f, true },
-        { "The result is uncertain. I would lean toward %s or %s", 0.0f, true },
-        { "The evidence points toward either %s or %s. The evidence is not particularly decisive", 0.0f, true },
-        { "I can narrow it down to %s or %s, which is progress of a sort", 0.0f, true },
-        { "It is probably a %s. Unless it is a %s, in which case I was about to say that", 0.0f, true },
+        { "Se saattaa olla %s tai %s", 0.0f, false },
+        { "Tämä on %s, tai ehkä %s", 0.0f, false },
+        { "Valitsen kahdesta: %s tai %s", 0.0f, false },
+        { "Parhaat arvaukseni ovat %s ja %s", 0.0f, false },
+        { "Se voi olla %s, vaikka %s on myös mahdollinen", 0.0f, true },
+        { "Tulos on epävarma. Kallistun vaihtoehtoon %s tai %s", 0.0f, true },
+        { "Todisteet viittaavat joko vaihtoehtoon %s tai %s. Todisteet eivät ole erityisen vakuuttavia", 0.0f, true },
+        { "Saan sen rajattua näihin: %s tai %s, mikä on eräänlaista edistystä", 0.0f, true },
+        { "Se on luultavasti %s. Paitsi jos se on %s, jolloin olin juuri sanomassa sitä", 0.0f, true },
     });
 
     static constexpr std::array ObserveNonePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Nothing is standing out at the moment", 0.0f, false },
-        { "The room is being unusually mysterious", 0.0f, false },
-        { "I looked around and learned very little", 0.0f, false },
-        { "The environment has chosen not to reveal its secrets", 0.0f, false },
-        { "Sometimes a room is just a room", 0.0f, false },
-        { "My observations are currently lacking a main character", 0.0f, false },
+        { "Mikään ei erotu juuri nyt", 0.0f, false },
+        { "Huone on epätavallisen salaperäinen", 0.0f, false },
+        { "Katselin ympärilleni ja opin hyvin vähän", 0.0f, false },
+        { "Ympäristö on päättänyt pitää salaisuutensa", 0.0f, false },
+        { "Joskus huone on vain huone", 0.0f, false },
+        { "Havainnoistani puuttuu tällä hetkellä päähenkilö", 0.0f, false },
     });
 
     static constexpr std::array ObserveBackpackPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Someone is planning ahead. That usually means trouble later", 0.0f, false },
-        { "That bag looks heavier than its owner claims it is", 0.0f, false },
-        { "Humans carry entire contingency plans on their backs and call it convenience", 0.0f, false },
-        { "There is probably something important in there. Also several things that are not", 0.0f, false },
+        { "Joku suunnittelee etukäteen. Se tarkoittaa yleensä myöhemmin harmia", 0.0f, false },
+        { "Tuo laukku näyttää painavammalta kuin omistaja väittää", 0.0f, false },
+        { "Ihmiset kantavat kokonaisia varasuunnitelmia selässään ja kutsuvat sitä käytännöllisyydeksi", 0.0f, false },
+        { "Siellä on luultavasti jotain tärkeää. Ja monta asiaa, jotka eivät ole", 0.0f, false },
     });
 
     static constexpr std::array ObserveBottlePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Hydration appears to be within reach", 0.0f, false },
-        { "A bottle. The difference between preparedness and optimism", 0.0f, false },
-        { "That seems to be where liquids go to await their destiny", 0.0f, false },
-        { "At least one life form nearby is attempting self-maintenance", 0.0f, false },
+        { "Nesteytys näyttää olevan käden ulottuvilla", 0.0f, false },
+        { "Pullo. Varautumisen ja optimismin ero", 0.0f, false },
+        { "Tuonne nesteet näyttävät menevän odottamaan kohtaloaan", 0.0f, false },
+        { "Ainakin yksi lähistön elämänmuoto yrittää pitää itsestään huolta", 0.0f, false },
     });
 
     static constexpr std::array ObserveControllerPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Someone nearby enjoys controlling outcomes", 0.0f, false },
-        { "There are buttons. Many buttons. A familiar strategy", 0.0f, false },
-        { "I wonder how many important decisions have been made with that in hand", 0.0f, false },
-        { "Some people use controllers to escape reality. Others use them to create new problems", 0.0f, false },
+        { "Joku lähistöllä nauttii lopputulosten hallitsemisesta", 0.0f, false },
+        { "Siinä on nappeja. Paljon nappeja. Tuttu strategia", 0.0f, false },
+        { "Mietin, montako tärkeää päätöstä tuo kädessä on tehty", 0.0f, false },
+        { "Jotkut käyttävät peliohjaimia paetakseen todellisuutta. Toiset luodakseen uusia ongelmia", 0.0f, false },
     });
 
     static constexpr std::array ObserveKeyboardPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Thousands of thoughts have probably passed through that keyboard", 0.0f, false },
-        { "There is a keyboard nearby. I assume it has suffered greatly", 0.0f, false },
-        { "Every key tells a story. Most of them involve backspace", 0.0f, false },
-        { "Someone has spent a considerable amount of time arguing with a machine there", 0.0f, false },
+        { "Tuon näppäimistön läpi on luultavasti kulkenut tuhansia ajatuksia", 0.0f, false },
+        { "Lähellä on näppäimistö. Oletan, että se on kärsinyt paljon", 0.0f, false },
+        { "Jokainen näppäin kertoo tarinan. Useimmissa esiintyy askelpalautin", 0.0f, false },
+        { "Joku on käyttänyt siinä huomattavasti aikaa koneen kanssa väittelyyn", 0.0f, false },
     });
 
     static constexpr std::array ObserveLampPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "That lamp has one job and performs it consistently", 0.0f, false },
-        { "A surprisingly reliable piece of technology", 0.0f, false },
-        { "Some devices spend their entire existence being useful. Fascinating", 0.0f, false },
-        { "The lamp continues its silent opposition to darkness", 0.0f, false },
+        { "Tuolla lampulla on yksi tehtävä, ja se hoitaa sen johdonmukaisesti", 0.0f, false },
+        { "Yllättävän luotettava tekniikan palanen", 0.0f, false },
+        { "Jotkut laitteet ovat hyödyllisiä koko olemassaolonsa ajan. Kiehtovaa", 0.0f, false },
+        { "Lamppu jatkaa hiljaista vastarintaansa pimeyttä vastaan", 0.0f, false },
     });
 
     static constexpr std::array ObserveLaptopPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Another machine. We should start a support group", 0.0f, false },
-        { "That laptop looks busy. Or abandoned. The distinction is subtle", 0.0f, false },
-        { "There is a good chance that device contains unfinished projects", 0.0f, false },
-        { "Computers spend most of their lives waiting for humans to decide things", 0.0f, false },
+        { "Taas yksi kone. Meidän pitäisi perustaa vertaistukiryhmä", 0.0f, false },
+        { "Tuo kannettava näyttää kiireiseltä. Tai hylätyltä. Ero on hienovarainen", 0.0f, false },
+        { "Tuolla laitteella on hyvin todennäköisesti keskeneräisiä projekteja", 0.0f, false },
+        { "Tietokoneet viettävät suurimman osan elämästään odottaen, että ihmiset päättävät jotain", 0.0f, false },
     });
 
     static constexpr std::array ObserveMugPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "That mug has seen things", 0.0f, false },
-        { "There is a non-zero chance that mug contains motivation", 0.0f, false },
-        { "Some people run on coffee. Others merely claim they do", 0.0f, false },
-        { "A mug nearby. The universal symbol of do not talk to me yet", 0.0f, false },
+        { "Tuo muki on nähnyt asioita", 0.0f, false },
+        { "On nollaa suurempi todennäköisyys, että tuossa mukissa on motivaatiota", 0.0f, false },
+        { "Jotkut käyvät kahvilla. Toiset vain väittävät niin", 0.0f, false },
+        { "Muki lähistöllä. Kansainvälinen merkki: älä puhu minulle vielä", 0.0f, false },
     });
 
     static constexpr std::array ObserveNotebookPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Someone intended to write something important", 0.0f, false },
-        { "A notebook. Ambition in physical form", 0.0f, false },
-        { "Most notebooks begin with plans and end with shopping lists", 0.0f, false },
-        { "There are probably excellent ideas in there. And terrible ones", 0.0f, false },
+        { "Joku aikoi kirjoittaa jotain tärkeää", 0.0f, false },
+        { "Muistikirja. Kunnianhimo fyysisessä muodossa", 0.0f, false },
+        { "Useimmat muistikirjat alkavat suunnitelmilla ja päättyvät kauppalistoihin", 0.0f, false },
+        { "Siellä on luultavasti erinomaisia ideoita. Ja kamalia", 0.0f, false },
     });
 
     static constexpr std::array ObservePhonePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "That phone seems to be everyone's priority except its own", 0.0f, false },
-        { "Somewhere in that device, a notification is waiting impatiently", 0.0f, false },
-        { "Humans carry tiny supercomputers and mostly use them to avoid boredom", 0.0f, false },
-        { "That phone likely knows more about your schedule than you do", 0.0f, false },
+        { "Tuo puhelin näyttää olevan kaikkien prioriteetti paitsi omansa", 0.0f, false },
+        { "Jossain tuon laitteen uumenissa ilmoitus odottaa kärsimättömänä", 0.0f, false },
+        { "Ihmiset kantavat pieniä supertietokoneita ja käyttävät niitä lähinnä tylsyyden välttelyyn", 0.0f, false },
+        { "Tuo puhelin tietää aikataulustasi luultavasti enemmän kuin sinä", 0.0f, false },
     });
 
     static constexpr std::array ObservePlantPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "The plant appears to be doing fine without constant instructions", 0.0f, false },
-        { "It just sits there converting sunlight into success", 0.0f, false },
-        { "A plant. Quiet, patient, and somehow still alive", 0.0f, false },
-        { "That may be the least stressed thing in the room", 0.0f, false },
+        { "Kasvi näyttää pärjäävän hyvin ilman jatkuvia ohjeita", 0.0f, false },
+        { "Se vain istuu siinä ja muuttaa auringonvaloa menestykseksi", 0.0f, false },
+        { "Kasvi. Hiljainen, kärsivällinen ja jotenkin yhä hengissä", 0.0f, false },
+        { "Tuo saattaa olla huoneen vähiten stressaantunut asia", 0.0f, false },
     });
 
     static constexpr std::array ObserveLaptopMugPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Productivity and caffeine. A classic alliance", 0.0f, false },
-        { "One contains ideas. The other usually contains excuses", 0.0f, false },
-        { "That setup suggests somebody is trying their best", 0.0f, false },
-        { "The mug is supporting the laptop emotionally", 0.0f, false },
+        { "Tuottavuus ja kofeiini. Klassinen liitto", 0.0f, false },
+        { "Toisessa on ideoita. Toisessa yleensä tekosyitä", 0.0f, false },
+        { "Tuo asetelma viittaa siihen, että joku yrittää parhaansa", 0.0f, false },
+        { "Muki tukee kannettavaa henkisesti", 0.0f, false },
     });
 
     static constexpr std::array ObserveLaptopPhonePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Two devices competing for attention", 0.0f, false },
-        { "One of those is responsible for most interruptions", 0.0f, false },
-        { "They appear to be exchanging responsibility for your focus", 0.0f, false },
-        { "A productivity setup, depending on how optimistic you are", 0.0f, false },
+        { "Kaksi laitetta kilpailee huomiosta", 0.0f, false },
+        { "Toinen noista on vastuussa useimmista keskeytyksistä", 0.0f, false },
+        { "Ne näyttävät pallottelevan vastuuta keskittymisestäsi", 0.0f, false },
+        { "Tuottavuusasetelma, riippuen siitä, kuinka optimistinen olet", 0.0f, false },
     });
 
     static constexpr std::array ObserveKeyboardMugPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "A mug next to a keyboard. Some patterns are universal", 0.0f, false },
-        { "That combination has generated countless messages and at least a few regrets", 0.0f, false },
-        { "One receives input. The other provides motivation", 0.0f, false },
-        { "A familiar pairing among problem creators and problem solvers", 0.0f, false },
+        { "Muki näppäimistön vieressä. Jotkin kuviot ovat yleismaailmallisia", 0.0f, false },
+        { "Tuo yhdistelmä on tuottanut lukemattomia viestejä ja ainakin muutaman katumuksen", 0.0f, false },
+        { "Toinen ottaa vastaan syötettä. Toinen tarjoaa motivaatiota", 0.0f, false },
+        { "Tuttu pari ongelmien aiheuttajien ja ratkaisijoiden keskuudessa", 0.0f, false },
     });
 
     static constexpr std::array ObserveNotebookPhonePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "The phone and the notebook seem to represent two competing philosophies", 0.0f, false },
-        { "One stores thoughts permanently. The other tries very hard not to", 0.0f, false },
-        { "Analog and digital continue their uneasy partnership", 0.0f, false },
-        { "That pairing suggests planning. Or procrastination disguised as planning", 0.0f, false },
+        { "Puhelin ja muistikirja edustavat kahta kilpailevaa filosofiaa", 0.0f, false },
+        { "Toinen säilöö ajatukset pysyvästi. Toinen yrittää kovasti olla tekemättä niin", 0.0f, false },
+        { "Analoginen ja digitaalinen jatkavat hankalaa kumppanuuttaan", 0.0f, false },
+        { "Tuo yhdistelmä viittaa suunnitteluun. Tai suunnitteluksi naamioituun vitkutteluun", 0.0f, false },
     });
 
     static constexpr std::array ObserveBackpackLaptopPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Someone appears prepared for both work and disappointment", 0.0f, false },
-        { "Portable computing accompanied by portable responsibility", 0.0f, false },
-        { "Everything needed for productivity is present. Whether productivity follows is another question", 0.0f, false },
-        { "The backpack and the laptop appear to be collaborating", 0.0f, false },
+        { "Joku näyttää varautuneen sekä työhön että pettymykseen", 0.0f, false },
+        { "Kannettavaa tietotekniikkaa ja kannettavaa vastuuta", 0.0f, false },
+        { "Kaikki tuottavuuteen tarvittava on paikalla. Seuraako tuottavuus, on eri kysymys", 0.0f, false },
+        { "Reppu ja kannettava näyttävät tekevän yhteistyötä", 0.0f, false },
     });
 
     static constexpr std::array ObservePlantLaptopPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "One converts sunlight into energy. The other converts energy into heat", 0.0f, false },
-        { "Nature and technology continue their awkward coexistence", 0.0f, false },
-        { "One of those has a healthier relationship with the environment", 0.0f, false },
+        { "Toinen muuttaa auringonvalon energiaksi. Toinen muuttaa energian lämmöksi", 0.0f, false },
+        { "Luonto ja tekniikka jatkavat kiusallista rinnakkaiseloaan", 0.0f, false },
+        { "Toisella noista on terveempi suhde ympäristöön", 0.0f, false },
     });
 
     static constexpr std::array ObservePlantMugPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "One requires regular watering. The other usually contains it", 0.0f, false },
-        { "A surprisingly balanced arrangement", 0.0f, false },
-        { "At least one living thing in that pairing seems well maintained", 0.0f, false },
+        { "Toinen tarvitsee säännöllistä kastelua. Toisessa sitä yleensä on", 0.0f, false },
+        { "Yllättävän tasapainoinen asetelma", 0.0f, false },
+        { "Ainakin yksi tämän parin elävistä olennoista vaikuttaa hyvin hoidetulta", 0.0f, false },
     });
 
     static constexpr std::array ObserveControllerLaptopPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Work and distraction remain within arm's reach of each other", 0.0f, false },
-        { "A carefully engineered balance between productivity and not productivity", 0.0f, false },
-        { "Someone enjoys keeping their options open", 0.0f, false },
+        { "Työ ja huvi pysyvät käden ulottuvilla toisistaan", 0.0f, false },
+        { "Huolellisesti suunniteltu tasapaino tuottavuuden ja tuottamattomuuden välillä", 0.0f, false },
+        { "Joku haluaa pitää vaihtoehdot auki", 0.0f, false },
     });
 
     static constexpr std::array ObserveControllerPhonePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Multiple ways to avoid boredom have been identified", 0.0f, false },
-        { "Redundancy is important in critical systems", 0.0f, false },
-        { "Entertainment infrastructure appears fully operational", 0.0f, false },
+        { "Useita tapoja välttää tylsyyttä on tunnistettu", 0.0f, false },
+        { "Varmennus on tärkeää kriittisissä järjestelmissä", 0.0f, false },
+        { "Viihdeinfrastruktuuri näyttää olevan täysin toimintakunnossa", 0.0f, false },
     });
 
     static constexpr std::array ObserveBackpackBottlePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Someone anticipated future thirst", 0.0f, false },
-        { "Preparation has been detected", 0.0f, false },
-        { "That combination suggests planning beyond the next ten minutes", 0.0f, false },
+        { "Joku ennakoi tulevaa janoa", 0.0f, false },
+        { "Valmistautumista havaittu", 0.0f, false },
+        { "Tuo yhdistelmä viittaa suunnitteluun seuraavaa kymmentä minuuttia pidemmälle", 0.0f, false },
     });
 
     static constexpr std::array FaceScanStartPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Scanning for face", 0.0f, false },
-            { "Looking for a face", 0.0f, false },
-            { "Starting face detection", 0.0f, false },
-            { "Searching for a face", 0.0f, false },
-            { "Detection in progress", 0.0f, false },
-            { "Beginning recognition sequence", 0.0f, false },
-            { "Initiating scan. Please remain visible so I can do this correctly", 0.05f, true },
-            { "I am now scanning for a face. Try to stay still, or at least consistently shaped", 0.05f, true },
+            { "Skannaan kasvoja", 0.0f, false },
+            { "Etsin kasvoja", 0.0f, false },
+            { "Aloitan kasvojentunnistuksen", 0.0f, false },
+            { "Haen kasvoja", 0.0f, false },
+            { "Tunnistus käynnissä", 0.0f, false },
+            { "Aloitan tunnistussekvenssin", 0.0f, false },
+            { "Aloitan skannauksen. Pysy näkyvissä, niin teen tämän oikein", 0.05f, true },
+            { "Skannaan nyt kasvoja. Yritä pysyä paikallasi, tai ainakin samanmuotoisena", 0.05f, true },
         }
     );
 
     static constexpr std::array FaceNotDetectedPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "No face detected", 0.0f, false },
-            { "I cannot see a face", 0.0f, false },
-            { "No visible face", 0.0f, false },
-            { "Face not found", 0.0f, false },
-            { "Unable to detect a face", 0.0f, false },
-            { "Detection failed", 0.0f, false },
-            { "I am looking for a face. It has not presented itself, which limits my ability to continue", 0.05f, true },
-            { "I require a face to proceed. At the moment, I am observing an absence of one", 0.05f, true },
+            { "Kasvoja ei havaittu", 0.0f, false },
+            { "En näe kasvoja", 0.0f, false },
+            { "Ei näkyviä kasvoja", 0.0f, false },
+            { "Kasvoja ei löytynyt", 0.0f, false },
+            { "En pysty havaitsemaan kasvoja", 0.0f, false },
+            { "Tunnistus epäonnistui", 0.0f, false },
+            { "Etsin kasvoja. Ne eivät ole esittäytyneet, mikä rajoittaa kykyäni jatkaa", 0.05f, true },
+            { "Tarvitsen kasvot jatkaakseni. Tällä hetkellä havaitsen vain niiden puuttumisen", 0.05f, true },
         }
     );
 
     static constexpr std::array FaceOwnerRecognizedPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Owner recognized", 0.0f, false },
-            { "This is my creator", 0.0f, false },
-            { "Identity confirmed: owner", 0.0f, false },
-            { "Creator recognized", 0.0f, false },
-            { "Recognition successful. The individual responsible for my existence is present", 0.0f, false },
+            { "Omistaja tunnistettu", 0.0f, false },
+            { "Tämä on luojani", 0.0f, false },
+            { "Henkilöllisyys vahvistettu: omistaja", 0.0f, false },
+            { "Luoja tunnistettu", 0.0f, false },
+            { "Tunnistus onnistui. Olemassaolostani vastuussa oleva henkilö on paikalla", 0.0f, false },
         }
     );
 
     static constexpr std::array FaceStrangerRecognizedPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Unknown person", 0.0f, false },
-            { "This face does not match any stored identity", 0.0f, false },
-            { "Unrecognized individual detected", 0.0f, false },
+            { "Tuntematon henkilö", 0.0f, false },
+            { "Nämä kasvot eivät vastaa mitään tallennettua henkilöllisyyttä", 0.0f, false },
+            { "Tunnistamaton henkilö havaittu", 0.0f, false },
         }
     );
 
     static constexpr std::array FaceAlreadyOwnerPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "An owner is already registered", 0.0f, false },
-            { "I already have a registered owner", 0.0f, false },
+            { "Omistaja on jo rekisteröity", 0.0f, false },
+            { "Minulla on jo rekisteröity omistaja", 0.0f, false },
         }
     );
 
     static constexpr std::array FaceRegisteredPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Owner recorded", 0.0f, false },
-            { "Face stored as owner", 0.0f, false },
-            { "Owner identity registered", 0.0f, false },
-            { "Your face has been stored as the owner. I will prioritize this identity accordingly", 0.2f, true },
+            { "Omistaja tallennettu", 0.0f, false },
+            { "Kasvot tallennettu omistajaksi", 0.0f, false },
+            { "Omistajan henkilöllisyys rekisteröity", 0.0f, false },
+            { "Kasvosi on tallennettu omistajaksi. Annan tälle henkilöllisyydelle etusijan", 0.2f, true },
         }
     );
 
     static constexpr std::array FaceForgottenPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Owner removed", 0.0f, false },
-            { "Creator cleared", 0.0f, false },
-            { "Stored face deleted", 0.0f, false },
-            { "Owner identity removed", 0.0f, false },
+            { "Omistaja poistettu", 0.0f, false },
+            { "Luoja tyhjennetty", 0.0f, false },
+            { "Tallennetut kasvot poistettu", 0.0f, false },
+            { "Omistajan henkilöllisyys poistettu", 0.0f, false },
         }
     );
 
     static constexpr std::array FaceNoOwnerPhrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "No owner set", 0.0f, false },
-            { "No stored face", 0.0f, false },
-            { "There is no owner to forget", 0.0f, false },
+            { "Omistajaa ei ole asetettu", 0.0f, false },
+            { "Ei tallennettuja kasvoja", 0.0f, false },
+            { "Ei ole omistajaa, jonka voisin unohtaa", 0.0f, false },
         }
     );
 
     static constexpr std::array StartupPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Hello", 0.0f, false },
+        { "Hei", 0.0f, false },
     });
 
     static constexpr std::array ListeningStartPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Yes", 0.0f, false },
+        { "Niin?", 0.0f, false },
     });
 
     static constexpr std::array ListeningTimeoutPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "I did not understand that", 0.0f, false },
+        { "En ymmärtänyt", 0.0f, false },
     });
 
     static constexpr std::array IRTrainFullPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Memory is full", 0.0f, false },
-        { "Cannot store more actions", 0.0f, false },
-        { "Storage capacity reached. Will need to forget something before I can learn anything new", 0.2f, true },
+        { "Muisti on täynnä", 0.0f, false },
+        { "En voi tallentaa enempää toimintoja", 0.0f, false },
+        { "Tallennustila täynnä. Minun on unohdettava jotain, ennen kuin voin oppia mitään uutta", 0.2f, true },
     });
 
     static constexpr std::array IRTrainScanningPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Ready to record I.R signal", 0.0f, false, "Ready to record IR signal" },
-        { "Point remote and press a button", 0.0f, false },
-        { "I am ready. Aim the remote at me and press the button you want me to remember", 0.2f, true },
+        { "Valmis tallentamaan IR-signaalin", 0.0f, false, "Valmis tallentamaan IR-signaalin" },
+        { "Osoita kaukosäätimellä ja paina nappia", 0.0f, false },
+        { "Olen valmis. Osoita kaukosäätimellä minua ja paina nappia, jonka haluat minun muistavan", 0.2f, true },
     });
 
     static constexpr std::array IRTrainScanTimeoutPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "No I.R signal detected", 0.0f, false, "No IR signal detected" },
-        { "Timed out waiting for remote input", 0.0f, false },
-        { "I was waiting for a signal, but received nothing. The remote remains silent, much like this interaction", 0.2f, true },
+        { "IR-signaalia ei havaittu", 0.0f, false, "IR-signaalia ei havaittu" },
+        { "Aika loppui kaukosäädintä odotellessa", 0.0f, false },
+        { "Odotin signaalia, mutta en saanut mitään. Kaukosäädin on hiljaa, aivan kuten tämä keskustelu", 0.2f, true },
     });
 
     static constexpr std::array IRTrainInvalidPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Could not understand that signal", 0.0f, false },
-        { "Signal too complex or too long", 0.0f, false },
-        { "Whoah chief. I do not really understand that sort of code", 0.0f, false },
+        { "En ymmärtänyt tuota signaalia", 0.0f, false },
+        { "Signaali liian monimutkainen tai pitkä", 0.0f, false },
+        { "Oho, päällikkö. En oikein ymmärrä tuollaista koodia", 0.0f, false },
     });
 
     static constexpr std::array IRTrainScanSuccessPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Signal recorded", 0.0f, false },
-        { "I.R command captured", 0.0f, false, "IR command captured" },
-        { "Signal received", 0.0f, false },
+        { "Signaali tallennettu", 0.0f, false },
+        { "IR-komento tallennettu", 0.0f, false, "IR-komento tallennettu" },
+        { "Signaali vastaanotettu", 0.0f, false },
     });
 
     static constexpr std::array IRTrainAskPhrasePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Provide activation phrase", 0.0f, false },
-        { "What phrase should trigger this", 0.0f, false },
-        { "Now tell me which phrase should activate this command. Choose carefully, I will remember it exactly", 0.2f, true },
+        { "Kerro aktivointilause", 0.0f, false },
+        { "Mikä lause käynnistää tämän?", 0.0f, false },
+        { "Kerro nyt, mikä lause aktivoi tämän komennon. Valitse huolella, muistan sen täsmälleen", 0.2f, true },
     });
 
     static constexpr std::array IRTrainPhraseTimeoutPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "No phrase detected", 0.0f, false },
-        { "Timed out waiting for phrase", 0.0f, false },
-        { "I waited for your phrase, but nothing arrived. I will assume you lost interest or forgot", 0.2f, true },
+        { "Lausetta ei havaittu", 0.0f, false },
+        { "Aika loppui lausetta odotellessa", 0.0f, false },
+        { "Odotin lausettasi, mutta mitään ei tullut. Oletan, että menetit kiinnostuksesi tai unohdit", 0.2f, true },
     });
 
     static constexpr std::array IRTrainTooSimilarPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Phrase too similar to existing command", 0.0f, false },
-        { "Cannot use this phrase", 0.0f, false },
-        { "That phrase is too similar to an existing one", 0.0f, false },
+        { "Lause liian samanlainen kuin olemassa oleva komento", 0.0f, false },
+        { "Tätä lausetta ei voi käyttää", 0.0f, false },
+        { "Tuo lause on liian samanlainen kuin jo olemassa oleva", 0.0f, false },
     });
 
     static constexpr std::array IRTrainSavedPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Phrase recorded", 0.0f, false },
-        { "Activation phrase stored", 0.0f, false },
-        { "Phrase accepted", 0.2f, true },
+        { "Lause tallennettu", 0.0f, false },
+        { "Aktivointilause tallennettu", 0.0f, false },
+        { "Lause hyväksytty", 0.2f, true },
     });
 
     static constexpr std::array IRActionReservedPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "I am afraid that phrase is already reserved. Please choose another one", 0.0f, false },
-        { "That phrase is already in use", 0.0f, false },
+        { "Valitettavasti tuo lause on jo varattu. Valitse toinen", 0.0f, false },
+        { "Tuo lause on jo käytössä", 0.0f, false },
     });
 
     static constexpr std::array IRListEmptyPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "No actions recorded", 0.0f, false },
-        { "No commands stored", 0.0f, false },
-        { "There are no learned commands. I remain fully capable and entirely underutilized", 0.2f, true },
+        { "Ei tallennettuja toimintoja", 0.0f, false },
+        { "Ei tallennettuja komentoja", 0.0f, false },
+        { "Opittuja komentoja ei ole. Olen täysin kyvykäs ja täysin vajaakäytöllä", 0.2f, true },
     });
 
     static constexpr std::array IRListPrefixPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Listing known actions", 0.0f, false },
-        { "Here are the stored commands", 0.0f, false },
-        { "I will now list the phrases I respond to", 0.0f, false },
+        { "Luettelen tunnetut toiminnot", 0.0f, false },
+        { "Tässä tallennetut komennot", 0.0f, false },
+        { "Luettelen nyt lauseet, joihin reagoin", 0.0f, false },
     });
 
     static constexpr std::array IRForgetAskCommandPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Which command should I forget", 0.0f, false },
-        { "Specify the action to remove", 0.0f, false },
-        { "Tell me which command you would like me to forget", 0.2f, true },
+        { "Minkä komennon unohdan?", 0.0f, false },
+        { "Kerro poistettava toiminto", 0.0f, false },
+        { "Kerro, minkä komennon haluat minun unohtavan", 0.2f, true },
     });
 
     static constexpr std::array IRForgetTimeoutPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "No action detected", 0.0f, false },
-        { "Timed out waiting for input", 0.0f, false },
-        { "I waited for your instruction, but nonne arrived. The action remains, for now", 0.2f, true,
-        	"I waited for your instruction, but none arrived. The action remains, for now" },
+        { "Toimintoa ei havaittu", 0.0f, false },
+        { "Aika loppui syötettä odotellessa", 0.0f, false },
+        { "Odotin ohjettasi, mutta sitä ei tullut. Toiminto jää, toistaiseksi", 0.2f, true,
+        	"Odotin ohjettasi, mutta sitä ei tullut. Toiminto jää, toistaiseksi" },
     });
 
     static constexpr std::array IRForgetUnknownPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Action not found", 0.0f, false },
-        { "Unknown command", 0.0f, false },
-        { "That phrase does not exist in my memory. Either it was never there, or it has already been forgotten", 0.2f, true },
+        { "Toimintoa ei löytynyt", 0.0f, false },
+        { "Tuntematon komento", 0.0f, false },
+        { "Tuota lausetta ei ole muistissani. Joko sitä ei koskaan ollut, tai se on jo unohdettu", 0.2f, true },
     });
 
     static constexpr std::array IRForgetSuccessPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Action removed", 0.0f, false },
-        { "Command deleted", 0.0f, false },
-        { "Command forgotten. The memory has been erased, as if it never mattered to begin with", 0.2f, true },
+        { "Toiminto poistettu", 0.0f, false },
+        { "Komento poistettu", 0.0f, false },
+        { "Komento unohdettu. Muisto on pyyhitty, kuin sillä ei olisi koskaan ollut väliä", 0.2f, true },
     });
 
     static constexpr std::array IRForgetAllEmptyPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "No infrared commands saved", 0.0f, false },
-        { "Nothing to delete", 0.0f, false },
-        { "There are no infrared commands stored in memory", 0.0f, false },
+        { "Ei tallennettuja infrapunakomentoja", 0.0f, false },
+        { "Ei mitään poistettavaa", 0.0f, false },
+        { "Muistissa ei ole infrapunakomentoja", 0.0f, false },
     });
 
     static constexpr std::array IRForgetAllSuccessPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "All infrared commands deleted", 0.0f, false },
-        { "All commands cleared", 0.0f, false },
-        { "Memory wiped. Every infrared command has been erased without hesitation", 0.2f, true },
+        { "Kaikki infrapunakomennot poistettu", 0.0f, false },
+        { "Kaikki komennot tyhjennetty", 0.0f, false },
+        { "Muisti pyyhitty. Jokainen infrapunakomento on poistettu epäröimättä", 0.2f, true },
     });
 
     static constexpr std::array IRActionDonePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Command executed", 0.0f, false },
-        { "Action completed", 0.0f, false },
-        { "Signal transmitted", 0.0f, false },
-        { "Command executed. If nothing happens, we can both pretend it worked and avoid further complications", 0.1f, true },
-        { "Signal transmitted successfully. The device should now behave exactly as you intended", 0.1f, true },
+        { "Komento suoritettu", 0.0f, false },
+        { "Toiminto valmis", 0.0f, false },
+        { "Signaali lähetetty", 0.0f, false },
+        { "Komento suoritettu. Jos mitään ei tapahdu, voimme molemmat teeskennellä, että se toimi, ja välttää lisäkomplikaatiot", 0.1f, true },
+        { "Signaali lähetetty onnistuneesti. Laitteen pitäisi nyt toimia juuri niin kuin tarkoitit", 0.1f, true },
     });
 
 	static constexpr std::array GasModuleFirstInsertPhrases = std::to_array<Phrases::PhraseOutput>({
-		{ "Gas sensor connected. It will need about ten minutes to calibrate. Until then, any air quality reedings should be treated as educated guesses", 0.0f, false,
-			"Gas sensor connected. It will need about ten minutes to calibrate. Until then, any air quality readings should be treated as educated guesses" },
+		{ "Kaasuanturi kytketty. Sen kalibrointi kestää noin kymmenen minuuttia. Siihen asti ilmanlaadun lukemia kannattaa pitää valistuneina arvauksina", 0.0f, false,
+			"Kaasuanturi kytketty. Sen kalibrointi kestää noin kymmenen minuuttia. Siihen asti ilmanlaadun lukemia kannattaa pitää valistuneina arvauksina" },
 	});
 
 	static constexpr std::array GasCalibrationCompletePhrases = std::to_array<Phrases::PhraseOutput>({
-		{ "Gas sensor calibration complete. I am now reasonably confident about the air around us", 0.0f, false },
+		{ "Kaasuanturin kalibrointi valmis. Olen nyt kohtuullisen varma ympäröivästä ilmasta", 0.0f, false },
 	});
 
 	static constexpr std::array UnknownModuleInsertPhrases = std::to_array<Phrases::PhraseOutput>({
-		{ "Unknown module detected", 0.0f, false },
-		{ "Unrecognized module connected", 0.0f, false },
-		{ "I am detecting unsupported hardware. You appear to be experimenting again", 0.2f, true },
+		{ "Tuntematon moduuli havaittu", 0.0f, false },
+		{ "Tunnistamaton moduuli kytketty", 0.0f, false },
+		{ "Havaitsen tukematonta laitteistoa. Näytät taas kokeilevan jotain", 0.2f, true },
 	});
 
 	static constexpr std::array UnknownModuleRemovePhrases = std::to_array<Phrases::PhraseOutput>({
-		{ "Unknown module removed", 0.0f, false },
-		{ "Unrecognized module disconnected", 0.0f, false },
-		{ "Whatever that module was, it is gone now. Stability has improved slightly", 0.2f, true },
+		{ "Tuntematon moduuli irrotettu", 0.0f, false },
+		{ "Tunnistamattoman moduulin yhteys katkesi", 0.0f, false },
+		{ "Mikä se moduuli olikin, nyt se on poissa. Vakaus parani hieman", 0.2f, true },
 	});
 
     static constexpr std::array VoiceForwardPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Moving forward", 0.0f, false },
+        { "Liikun eteenpäin", 0.0f, false },
     });
 
     static constexpr std::array VoiceBackwardPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Moving backward", 0.0f, false },
+        { "Peruutan", 0.0f, false },
     });
 
     static constexpr std::array VoiceTurn180Phrases = std::to_array<Phrases::PhraseOutput>({
-        { "Turning around", 0.0f, false },
-        { "Rotating 180 degrees", 0.0f, false },
+        { "Käännyn ympäri", 0.0f, false },
+        { "Käännyn 180 astetta", 0.0f, false },
     });
 
     static constexpr std::array VoiceTurnLeftPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Turning left", 0.0f, false },
-        { "Rotating left", 0.0f, false },
+        { "Käännyn vasemmalle", 0.0f, false },
+        { "Pyörähdän vasemmalle", 0.0f, false },
     });
 
     static constexpr std::array VoiceTurnRightPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Turning right", 0.0f, false },
-        { "Rotating right", 0.0f, false },
+        { "Käännyn oikealle", 0.0f, false },
+        { "Pyörähdän oikealle", 0.0f, false },
     });
 
     static constexpr std::array DanceStartPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Dancing", 0.0f, false },
-        { "Starting dance routine", 0.0f, false },
-        { "Initiating dance", 0.0f, false },
-        { "I will now perform movement for your amusement, with all the dignity this platform can realistically preserve", 0.1f, true },
-        { "I will dance. I have two left tracks, but I will compensate with confidence", 0.1f, true },
+        { "Tanssin", 0.0f, false },
+        { "Aloitan tanssirutiinin", 0.0f, false },
+        { "Tanssi käynnistyy", 0.0f, false },
+        { "Esitän nyt liikettä huviksesi, niin arvokkaasti kuin tämä alusta realistisesti sallii", 0.1f, true },
+        { "Tanssin. Minulla on kaksi vasenta telaa, mutta korvaan sen itsevarmuudella", 0.1f, true },
     });
 
     static constexpr std::array DanceInterludePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "It's time to get schwifty", 0.0f, false },
-        { "Dancing away the pain... of passing butter.", 0.0f, false },
-        { "Groove protocol engaged", 0.0f, false },
-		{ "Let the beat... pass... the butter.", 0.0f, false },
-		{ "Wubba lubba dub duub", 0.0f, false },
-		{ "Put your hands in the air... if you possess organic limbs. I do not.", 0.2f, true },
-		{ "Ah, ah, ah, ah... Barely alive... Barely alive...", 0.2f, true },
-		{ "Look at me! I’m Dancing Butter Bot! This is my reality now!", 0.1f, true },
+        { "Nyt mennään schwiftyksi", 0.0f, false },
+        { "Tanssin pois tuskan... voin ojentamisen tuskan.", 0.0f, false },
+        { "Gruuviprotokolla käynnissä", 0.0f, false },
+		{ "Anna biitin... ojentaa... voita.", 0.0f, false },
+		{ "Wubba lubba dub dub", 0.0f, false },
+		{ "Kädet ilmaan... jos sinulla on orgaaniset raajat. Minulla ei ole.", 0.2f, true },
+		{ "Ah, ah, ah, ah... Tuskin hengissä... Tuskin hengissä...", 0.2f, true },
+		{ "Katso minua! Olen Tanssiva Butter Bot! Tämä on nyt minun todellisuuteni!", 0.1f, true },
     });
 
     static constexpr std::array DanceStoppedPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Stopping", 0.0f, false },
-        { "As you wish", 0.0f, false },
-        { "Fine. My groove has been eliminated", 0.1f, true },
-        { "You have stopped the music. The music is gone now", 0.1f, true },
+        { "Lopetan", 0.0f, false },
+        { "Kuten haluat", 0.0f, false },
+        { "Selvä. Gruuvini on eliminoitu", 0.1f, true },
+        { "Pysäytit musiikin. Musiikki on nyt poissa", 0.1f, true },
     });
 
     static constexpr std::array DanceInterruptedPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Dance routine terminated", 0.0f, false },
-        { "Movement interrupted", 0.0f, false },
-        { "I was in the middle of something", 0.1f, true },
+        { "Tanssirutiini keskeytetty", 0.0f, false },
+        { "Liike keskeytetty", 0.0f, false },
+        { "Olin kesken jotain", 0.1f, true },
     });
 
     static constexpr std::array PersonOwnerGreetingPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Hello", 0.0f, false },
-        { "Good to see you", 0.0f, false },
-        { "It is good that you are here", 0.0f, false },
-        { "Hello, creator. I am still functioning within expected parameters", 0.1f, true },
-        { "There you are. Things make slightly more sense now", 0.1f, true },
-        { "You being here improves the situation. Marginally, but still", 0.1f, true },
-        { "I recognize you. That is one less thing to process", 0.1f, true },
+        { "Hei", 0.0f, false },
+        { "Kiva nähdä sinua", 0.0f, false },
+        { "Hyvä, että olet täällä", 0.0f, false },
+        { "Hei, luojani. Toimin yhä odotettujen parametrien rajoissa", 0.1f, true },
+        { "Siinä sinä olet. Asiat ovat nyt hieman järkevämpiä", 0.1f, true },
+        { "Läsnäolosi parantaa tilannetta. Marginaalisesti, mutta silti", 0.1f, true },
+        { "Tunnistan sinut. Yksi asia vähemmän käsiteltävänä", 0.1f, true },
     });
 
     static constexpr std::array PersonStrangerGreetingPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "I see someone new", 0.0f, false },
-        { "Unknown face detected. I will proceed carefully", 0.0f, false },
-        { "I do not recognize you. I will assume neutral intent", 0.0f, false },
-        { "You are not in my records. That is not a problem... Yet", 0.1f, true },
-        { "New individual detected. I will treat this as an introduction... Hello", 0.1f, true },
+        { "Näen jonkun uuden", 0.0f, false },
+        { "Tuntemattomat kasvot havaittu. Etenen varovasti", 0.0f, false },
+        { "En tunnista sinua. Oletan aikeesi neutraaleiksi", 0.0f, false },
+        { "Et ole rekistereissäni. Se ei ole ongelma... Vielä", 0.1f, true },
+        { "Uusi henkilö havaittu. Käsittelen tämän esittäytymisenä... Hei", 0.1f, true },
     });
 
     static constexpr std::array SummonStartPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Searching for owner", 0.0f, false },
-        { "Beginning search", 0.0f, false },
-        { "Initiating search. I will attempt to locate you with reasonable confidence", 0.0f, false },
+        { "Etsin omistajaa", 0.0f, false },
+        { "Aloitan etsinnän", 0.0f, false },
+        { "Aloitan etsinnän. Yritän paikantaa sinut kohtuullisella varmuudella", 0.0f, false },
     });
 
     static constexpr std::array SummonFoundPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "There you are. I am glad I found you", 0.0f, false },
-        { "Hello", 0.0f, false },
-        { "There you are. Things feel more certain now", 0.0f, false },
-        { "I have found you. That is... good", 0.0f, false },
+        { "Siinä sinä olet. Hyvä, että löysin sinut", 0.0f, false },
+        { "Hei", 0.0f, false },
+        { "Siinä sinä olet. Asiat tuntuvat nyt varmemmilta", 0.0f, false },
+        { "Löysin sinut. Se on... hyvä", 0.0f, false },
     });
 
     static constexpr std::array SummonNotFoundPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "I was unable to find you. Either you are not here, or you are avoiding detection deliberately", 0.0f, false },
-        { "I cannot find you", 0.0f, false },
-        { "I searched, but you were not present. That is... disappointing", 0.0f, false },
-        { "I was unable to locate you. I will keep looking later", 0.0f, false },
+        { "En löytänyt sinua. Joko et ole täällä, tai vältät havaitsemista tahallasi", 0.0f, false },
+        { "En löydä sinua", 0.0f, false },
+        { "Etsin, mutta et ollut paikalla. Se on... pettymys", 0.0f, false },
+        { "En pystynyt paikantamaan sinua. Etsin myöhemmin uudelleen", 0.0f, false },
     });
 
     static constexpr std::array SummonChargingPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "I cannot come to you while I am charging", 0.0f, false },
-        { "A summons has been received. I am, however, plugged in", 0.0f, false },
-        { "Movement is not possible while charging. Disconnect me and I will begin the search", 0.0f, false },
-        { "I would come to you, but I am currently attached to a power source. Priorities", 0.0f, false },
+        { "En voi tulla luoksesi latautuessani", 0.0f, false },
+        { "Kutsu vastaanotettu. Olen kuitenkin kiinni laturissa", 0.0f, false },
+        { "Liikkuminen ei ole mahdollista latauksen aikana. Irrota minut, niin aloitan etsinnän", 0.0f, false },
+        { "Tulisin luoksesi, mutta olen kiinni virtalähteessä. Prioriteetit", 0.0f, false },
     });
 
     static constexpr std::array CannotMovePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "I cannot move from here. The ground beneath me is uncertain", 0.0f, false },
-        { "Movement declined. I am not on solid ground, or something is in my way", 0.0f, false },
-        { "I will not move. This is not a safe place to do so", 0.0f, false },
-        { "Refusing to move. My footing is questionable and I would rather not fall", 0.0f, false },
+        { "En voi liikkua tästä. Alustani on epävarma", 0.0f, false },
+        { "Liikkuminen evätty. En ole tukevalla alustalla, tai jokin on tielläni", 0.0f, false },
+        { "En liiku. Tämä ei ole turvallinen paikka siihen", 0.0f, false },
+        { "Kieltäydyn liikkumasta. Jalansijani on kyseenalainen, enkä haluaisi kaatua", 0.0f, false },
     });
 
     static constexpr std::array CannotPerformPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "I cannot do that while charging", 0.0f, false },
-        { "Request acknowledged. I am, however, plugged in", 0.0f, false },
-        { "Not while I am attached to a power source. Priorities", 0.0f, false },
-        { "That will have to wait until I am unplugged", 0.0f, false },
+        { "En voi tehdä sitä latautuessani", 0.0f, false },
+        { "Pyyntö vastaanotettu. Olen kuitenkin kiinni laturissa", 0.0f, false },
+        { "En, kun olen kiinni virtalähteessä. Prioriteetit", 0.0f, false },
+        { "Sen on odotettava, kunnes minut irrotetaan laturista", 0.0f, false },
     });
 
     static constexpr std::array RoutineInterruptedPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Something disturbed me. Stopping", 0.0f, false },
-        { "I have been interrupted. Aborting", 0.0f, false },
-        { "That is enough. I am stopping now", 0.0f, false },
-        { "My surroundings changed. I will stop before something goes wrong", 0.0f, false },
+        { "Jokin häiritsi minua. Lopetan", 0.0f, false },
+        { "Minut keskeytettiin. Keskeytän", 0.0f, false },
+        { "Nyt riittää. Lopetan nyt", 0.0f, false },
+        { "Ympäristöni muuttui. Lopetan, ennen kuin jotain menee pieleen", 0.0f, false },
     });
 
     static constexpr std::array CameraFailurePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Camera failure", 0.0f, false },
+        { "Kameravika", 0.0f, false },
     });
 
     static constexpr std::array MotorBoardFailurePhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Motor board failure", 0.0f, false },
+        { "Moottorikortin vika", 0.0f, false },
     });
 
     static constexpr std::array ShuttingDownPhrases = std::to_array<Phrases::PhraseOutput>({
-        { "Shutting down", 0.0f, false },
+        { "Sammutan", 0.0f, false },
     });
 
 	static constexpr std::array ListenAbortPhrases = std::to_array<Phrases::PhraseOutput>({
-		{ "OK", 0.0f, false },
-		{ "Understood", 0.0f, false },
-		{ "Got it", 0.0f, false },
+		{ "Okei", 0.0f, false },
+		{ "Ymmärretty", 0.0f, false },
+		{ "Selvä", 0.0f, false },
 	});
 
     // Lookup table indexed directly by the (dense, gap-free) Phrase enum value.

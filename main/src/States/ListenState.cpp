@@ -67,14 +67,14 @@ namespace {
     struct StartPrompt { const char* text; uint16_t durationMs; };
 
     constexpr StartPrompt StartPrompts[] = {
-        { "Yes?",                  753 },
-        { "I'm listening",         978 },
-        { "How can I help?",      1303 },
-        { "Another task?",        1010 },
-        { "How may I assist?",    1417 },
-        { "You have my attention", 1531 },
-        { "Awaiting input",       1144 },
-        { "State your request",   1511 },
+        { "Niin?",                     859 },
+        { "Kuuntelen",                1056 },
+        { "Miten voin auttaa?",       1646 },
+        { "Uusi tehtävä?",            1251 },
+        { "Kuinka voin olla avuksi?", 1959 },
+        { "Olen pelkkänä korvana",    1843 },
+        { "Odotan syötettä",          1536 },
+        { "Kerro pyyntösi",           1436 },
     };
 
     constexpr SoundEffect Lasers1[] = {

@@ -105,14 +105,14 @@ static uint8_t diceTypeSides(const DiceRollData::DiceType type){
 
 static const char* diceTypeName(const DiceRollData::DiceType type){
 	switch(type){
-		case DiceRollData::DiceType::D4: return "d four";
-		case DiceRollData::DiceType::D6: return "d six";
-		case DiceRollData::DiceType::D8: return "d eight";
-		case DiceRollData::DiceType::D10: return "d ten";
-		case DiceRollData::DiceType::D12: return "d twelve";
-		case DiceRollData::DiceType::D20: return "d twenty";
-		case DiceRollData::DiceType::D100: return "d one hundred";
-		default: return "d six";
+		case DiceRollData::DiceType::D4: return "dee neljä";
+		case DiceRollData::DiceType::D6: return "dee kuusi";
+		case DiceRollData::DiceType::D8: return "dee kahdeksan";
+		case DiceRollData::DiceType::D10: return "dee kymmenen";
+		case DiceRollData::DiceType::D12: return "dee kaksitoista";
+		case DiceRollData::DiceType::D20: return "dee kaksikymmentä";
+		case DiceRollData::DiceType::D100: return "dee sata";
+		default: return "dee kuusi";
 	}
 }
 
@@ -179,7 +179,7 @@ static void rollAndReport(Audio* audio, Com* com, AudioFrontend* af, AACAudioGen
 	CMF_LOG(DiceRollRoutine, LogLevel::Info, "Roll: %dd%d = %d", count, sides, result);
 
 	char rollText[64];
-	snprintf(rollText, sizeof(rollText), "%dd%d roll", count, sides);
+	snprintf(rollText, sizeof(rollText), "Heitän %d %s", count, diceTypeName(diceType));
 	speakText(audio, rollText);
 
 	sendState(com, DiceRollData::Phase::RollAnim, diceType, count, 0);

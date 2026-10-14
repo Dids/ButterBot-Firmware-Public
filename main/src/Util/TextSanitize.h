@@ -30,4 +30,12 @@
 void sanitizeToAscii(std::string_view in, std::string& out);
 std::string sanitizeToAscii(std::string_view in);
 
+/**
+ * Same as sanitizeToAscii(), but Latin-1 letters (U+00C0-U+00FF, e.g. ä ö å é) are kept
+ * as UTF-8 instead of transliterated, so the speech synthesizer can pronounce them.
+ * Use for text that is only spoken; anything shown on the remote must stay ASCII.
+ */
+void sanitizeForSpeech(std::string_view in, std::string& out);
+std::string sanitizeForSpeech(std::string_view in);
+
 #endif //BUTTERBOT_FIRMWARE_TEXTSANITIZE_H

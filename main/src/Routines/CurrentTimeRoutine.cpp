@@ -46,12 +46,14 @@ Routine::TickingState CurrentTimeRoutine::tick(float deltaTime){
     const tm now = timeService->getTime();
     const int hour24 = now.tm_hour;
     const int minute = now.tm_min;
-    const char* ampm = hour24 >= 12 ? "PM" : "AM";
-    int hour12 = hour24 % 12;
-    if(hour12 == 0) hour12 = 12;
 
+    // 24-hour clock. A colon, not the Finnish dot: eSpeak reads "14.05" as "neljätoista piste nolla viisi"
     char timeBuf[16];
-    snprintf(timeBuf, sizeof(timeBuf), "%d:%02d %s", hour12, minute, ampm);
+    if(minute == 0){
+        snprintf(timeBuf, sizeof(timeBuf), "%d", hour24);
+    }else{
+        snprintf(timeBuf, sizeof(timeBuf), "%d:%02d", hour24, minute);
+    }
 
     const int16_t id = Phrases::get(Phrase::CurrentTimeShow);
     if(id < 0){

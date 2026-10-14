@@ -142,9 +142,10 @@ void AMS::Client::processEntityUpdate(const PSRAMByteBuffer& data){
 			}
 		}
 	}else if(entity == EntityID::Track){
-		if(attr == TrackAttributeID::TrackTitle)       sanitizeToAscii(value, info.title);
-		else if(attr == TrackAttributeID::TrackArtist) sanitizeToAscii(value, info.artist);
-		else if(attr == TrackAttributeID::TrackAlbum)  sanitizeToAscii(value, info.album);
+		// Kept with ä/ö for speech; WhatsPlayingRoutine makes the remote's copy ASCII
+		if(attr == TrackAttributeID::TrackTitle)       sanitizeForSpeech(value, info.title);
+		else if(attr == TrackAttributeID::TrackArtist) sanitizeForSpeech(value, info.artist);
+		else if(attr == TrackAttributeID::TrackAlbum)  sanitizeForSpeech(value, info.album);
 		else return;
 		dirty = true;
 

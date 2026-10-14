@@ -11,6 +11,7 @@
 #include "Phone/Phone.h"
 #include "Phone/MediaInfo.h"
 #include <Util/ServiceLocator.h>
+#include "Util/TextSanitize.h"
 
 DEFINE_LOG(WhatsPlayingRoutine)
 
@@ -46,9 +47,10 @@ Routine::TickingState WhatsPlayingRoutine::tick(float deltaTime){
     const MediaInfo& mediaInfo = phone->getMedia();
 
     WhatsPlayingData bbData{};
-    bbData.title = mediaInfo.title;
-    bbData.artist = mediaInfo.artist;
-    bbData.album = mediaInfo.album;
+    // The remote's font has no ä/ö
+    bbData.title = sanitizeToAscii(mediaInfo.title);
+    bbData.artist = sanitizeToAscii(mediaInfo.artist);
+    bbData.album = sanitizeToAscii(mediaInfo.album);
 
     if(mediaState == MediaState::Stopped){
         const int16_t id = Phrases::get(Phrase::PhoneNotPlaying);
@@ -65,7 +67,7 @@ Routine::TickingState WhatsPlayingRoutine::tick(float deltaTime){
 
         bbData.id = static_cast<uint8_t>(id);
         com->sendData(BB::State::Scenario, BB::Action::Scenario::PhoneWhatsPlaying, bbData);
-        playText(mediaInfo.title + " by " + mediaInfo.artist);
+        playText(mediaInfo.title + ", esittäjänä " + mediaInfo.artist);
     }
 
     return TickingState::Done;

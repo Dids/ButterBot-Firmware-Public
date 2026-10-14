@@ -42,7 +42,7 @@ static std::string callerIdentity(const std::string& title, const std::string& m
     if(!message.empty()){
         return message;
     }
-    return "an unknown number";
+    return "tuntematon numero";
 }
 
 static std::string formatNotifText(const Notif& notif){
@@ -51,25 +51,25 @@ static std::string formatNotifText(const Notif& notif){
 
     switch(notif.category){
         case Notif::Category::MissedCall:
-            return "Missed call from " + callerIdentity(title, message);
+            return "Vastaamaton puhelu: " + callerIdentity(title, message);
 
         case Notif::Category::Voicemail:
-            return "Voicemail from " + callerIdentity(title, message);
+            return "Vastaajaviesti: " + callerIdentity(title, message);
 
         case Notif::Category::Email:
-            return "Email from " + title + ": " + message;
+            return "Sähköposti, lähettäjä " + title + ": " + message;
 
         case Notif::Category::News:
-            return "News from " + notif.appID + ": " + message;
+            return "Uutinen, " + notif.appID + ": " + message;
 
         case Notif::Category::Schedule:
-            return "Reminder: " + message;
+            return "Muistutus: " + message;
 
         case Notif::Category::Social:
             if(KnownSocialApps.count(notif.appID)){
-                return title + " on " + notif.appID + " says: " + message;
+                return title + " sovelluksessa " + notif.appID + " sanoo: " + message;
             }
-            return title + " says: " + message;
+            return title + " sanoo: " + message;
 
         case Notif::Category::HealthAndFitness:
         case Notif::Category::BusinessAndFinance:
@@ -77,7 +77,7 @@ static std::string formatNotifText(const Notif& notif){
         case Notif::Category::Entertainment:
         case Notif::Category::Other:
         default:
-            return "App " + notif.appID + " says: " + message;
+            return "Sovellus " + notif.appID + " sanoo: " + message;
     }
 }
 
@@ -171,8 +171,8 @@ Routine::TickingState ListNotificationsRoutine::tick(float deltaTime){
             sendListNotifsState(com, PhoneListNotifsData::Phase::Count, (countId >= 0) ? static_cast<uint8_t>(countId) : 0, count, count);
 
             const std::string countText = (count == 1)
-                ? "You have 1 notification."
-                : "You have " + std::to_string(count) + " notifications.";
+                ? "Sinulla on 1 ilmoitus."
+                : "Sinulla on " + std::to_string(count) + " ilmoitusta.";
             playText(audio, countText);
 
             CMF_LOG(ListNotificationsRoutine, LogLevel::Info, "Reading %d notifications", (int)count);

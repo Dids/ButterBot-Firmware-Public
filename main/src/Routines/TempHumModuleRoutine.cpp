@@ -115,15 +115,17 @@ int16_t TempHumModuleRoutine::convertTemp(int16_t celsius){
 
 std::string TempHumModuleRoutine::formatTemp(int16_t converted){
     char buf[64];
+    const bool singular = converted == 1 || converted == -1;
     switch(currentScale){
+        // Finnish: singular after (minus) one, partitive otherwise
         case SettingsStruct::Scale::Celsius:
-            snprintf(buf, sizeof(buf), "%d degrees Celsius", converted);
+            snprintf(buf, sizeof(buf), "%d %s", converted, singular ? "aste" : "astetta");
             break;
         case SettingsStruct::Scale::Fahrenheit:
-            snprintf(buf, sizeof(buf), "%d degrees Fahrenheit", converted);
+            snprintf(buf, sizeof(buf), "%d %s", converted, singular ? "fahrenheitaste" : "fahrenheitastetta");
             break;
         case SettingsStruct::Scale::Kelvin:
-            snprintf(buf, sizeof(buf), "%d Kelvin", converted);
+            snprintf(buf, sizeof(buf), "%d %s", converted, singular ? "kelvin" : "kelviniä");
             break;
     }
     return buf;

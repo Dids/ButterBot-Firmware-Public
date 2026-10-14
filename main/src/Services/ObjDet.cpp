@@ -6,16 +6,16 @@
 DEFINE_LOG(ObjDet)
 
 const std::unordered_map<ObjClass, const char*> ObjDet::ClassNames = {
-		{ ObjClass::Backpack, "Backpack" },
-		{ ObjClass::Bottle, "Bottle" },
-		{ ObjClass::Controller, "Controller" },
-		{ ObjClass::Keyboard, "Keyboard" },
-		{ ObjClass::Lamp, "Lamp" },
-		{ ObjClass::Laptop, "Laptop" },
-		{ ObjClass::Mug, "Mug" },
-		{ ObjClass::Notebook, "Notebook" },
-		{ ObjClass::Phone, "Phone" },
-		{ ObjClass::Plant, "Plant" }
+		{ ObjClass::Backpack, "reppu" },
+		{ ObjClass::Bottle, "pullo" },
+		{ ObjClass::Controller, "peliohjain" },
+		{ ObjClass::Keyboard, "näppäimistö" },
+		{ ObjClass::Lamp, "lamppu" },
+		{ ObjClass::Laptop, "kannettava" },
+		{ ObjClass::Mug, "muki" },
+		{ ObjClass::Notebook, "muistikirja" },
+		{ ObjClass::Phone, "puhelin" },
+		{ ObjClass::Plant, "kasvi" }
 };
 
 ObjDet::ObjDet(){

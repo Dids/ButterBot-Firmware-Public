@@ -317,9 +317,9 @@ void ANCS::Client::processData(bool sendIncomplete){
 
 		Notif notif = {
 				.uid = nd.uid,
-				.title = sanitizeToAscii(get(Title)),
+				.title = sanitizeForSpeech(get(Title)),
 				//.subtitle = get(Subtitle),
-				.message = sanitizeToAscii(get(Message)),
+				.message = sanitizeForSpeech(get(Message)),
 				.appID = std::string(get(AppIdentifier)),
 				//.time = {}, // TODO
 				//.label = { .pos = get(PositiveActionLabel), .neg = get(NegativeActionLabel) },

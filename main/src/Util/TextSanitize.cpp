@@ -352,9 +352,8 @@ std::string_view transliterate(uint32_t cp, char* scratch){
 	}
 }
 
-} // namespace
-
-void sanitizeToAscii(std::string_view in, std::string& out){
+// Shared by both public variants: keepLatin1 passes U+00C0-U+00FF letters through as UTF-8
+void sanitize(std::string_view in, std::string& out, bool keepLatin1){
 	enum class Pending{ None, Space, Newline };
 
 	out.clear();              // keeps existing capacity for reuse across calls
@@ -393,6 +392,13 @@ void sanitizeToAscii(std::string_view in, std::string& out){
 
 		if(isInvisibleCp(cp)) continue;          // drop, keep pending whitespace
 
+		if(keepLatin1 && cp >= 0xC0 && cp <= 0xFF && cp != 0xD7 && cp != 0xF7){
+			flush();
+			out.push_back((char) (0xC0 | (cp >> 6)));
+			out.push_back((char) (0x80 | (cp & 0x3F)));
+			continue;
+		}
+
 		char scratch[2];
 		const std::string_view mapped = transliterate(cp, scratch);
 		if(mapped.empty()) continue;             // no ASCII equivalent, dropped
@@ -403,8 +409,24 @@ void sanitizeToAscii(std::string_view in, std::string& out){
 	// trailing pending whitespace is intentionally discarded
 }
 
+} // namespace
+
+void sanitizeToAscii(std::string_view in, std::string& out){
+	sanitize(in, out, false);
+}
+
 std::string sanitizeToAscii(std::string_view in){
 	std::string out;
 	sanitizeToAscii(in, out);
+	return out;
+}
+
+void sanitizeForSpeech(std::string_view in, std::string& out){
+	sanitize(in, out, true);
+}
+
+std::string sanitizeForSpeech(std::string_view in){
+	std::string out;
+	sanitizeForSpeech(in, out);
 	return out;
 }
