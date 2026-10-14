@@ -21,8 +21,8 @@ static constexpr int Volume = 100; // 0-200
 // IR command names were recognized in English, so they are read back in English
 static constexpr const char* PhonemeVoice = "en";
 
-// eSpeak calls back with this much audio at a time
-static constexpr int ChunkMs = 50;
+// eSpeak calls back with this much audio at a time (60 ms is its minimum)
+static constexpr int ChunkMs = 60;
 
 static SpeechGen* instance = nullptr;
 
@@ -65,11 +65,18 @@ SpeechGen::~SpeechGen(){
 }
 
 int SpeechGen::generate(std::span<int16_t> output, bool& last, TickType_t timeout){
-	// Use a non-blocking receive once synthesis is done to avoid deadlock on an
-	// empty ringbuffer (nothing will ever write to it again at that point).
-	const TickType_t actualTimeout = synthRunning ? timeout : 0;
+	// Wait in short slices and re-check synthRunning: a synthesis that ends without writing anything
+	// (engine not ready, nothing pronounceable) would otherwise leave this blocked on the ringbuffer forever.
+	const TickType_t start = xTaskGetTickCount();
 	size_t size;
-	auto data = (int16_t*)xRingbufferReceiveUpTo(ringbuf, &size, actualTimeout, output.size() * sizeof(int16_t));
+	int16_t* data;
+	for(;;){
+		const bool running = synthRunning;
+		const TickType_t elapsed = xTaskGetTickCount() - start;
+		const TickType_t left = (running && elapsed < timeout) ? timeout - elapsed : 0;
+		data = (int16_t*)xRingbufferReceiveUpTo(ringbuf, &size, std::min<TickType_t>(left, pdMS_TO_TICKS(10)), output.size() * sizeof(int16_t));
+		if(data != nullptr || left == 0) break;
+	}
 
 	if(data == nullptr){
 		CMF_LOG(SpeechGen, LogLevel::Debug, "Ringbuffer data is nullptr");
