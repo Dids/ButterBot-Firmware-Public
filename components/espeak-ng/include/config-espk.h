@@ -107,3 +107,15 @@ void* espeak_mem_map(const char* path, int* len);
 #endif
 
 #undef B0
+
+// newlib is built without _MB_CAPABLE, so its isw*() only know ASCII and Ä/Ö would never be
+// lower-cased. Route them to eSpeak's own Unicode tables (wctype.h first, so its guard holds).
+#include <wctype.h>
+#include "ucd/ucd.h"
+#define iswalnum(c) ucd_isalnum(c)
+#define iswalpha(c) ucd_isalpha(c)
+#define iswdigit(c) ucd_isdigit(c)
+#define iswlower(c) ucd_islower(c)
+#define iswpunct(c) ucd_ispunct(c)
+#define iswspace(c) ucd_isspace(c)
+#define iswupper(c) ucd_isupper(c)

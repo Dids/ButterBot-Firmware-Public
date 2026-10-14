@@ -28,6 +28,9 @@ Not taken: `arduino/` (Arduino wrapper, audio, posix-fs glue), `src/pcaudiolib`,
 - `include/config-espk.h`: ESP-IDF build config, replaces the port's (which pulls in
   Arduino headers). No posix-fs, no pcaudio, no async, Klatt enabled for the
   klatt/robosoft variants, `ESPK_LOG` at ESP-IDF debug level.
+  It also maps the `isw*()` character classes to eSpeak's `ucd_*()` tables: newlib on
+  ESP-IDF is built without `_MB_CAPABLE`, so `iswupper('Ä')` is false and capitals with
+  diacritics would never be lower-cased.
 - `include/direntx.h`: plain `<dirent.h>`.
 - `include/espeak_data.h`, `espeak_data.c`: maps the `espeak` flash partition, mounts it
   read-only at `/espeak` and implements `espeak_mem_map()` so the phoneme tables and
