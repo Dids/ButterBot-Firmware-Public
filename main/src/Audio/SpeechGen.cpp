@@ -16,7 +16,7 @@ DEFINE_LOG(SpeechGen)
 static constexpr const char* Voice = "fi";
 static constexpr int Rate = 160; // words per minute
 static constexpr int Pitch = 50; // 0-100
-static constexpr int Volume = 100; // 0-200
+static constexpr int Volume = 25; // 0-200. 100 drives the small speaker too hard
 
 // IR command names were recognized in English, so they are read back in English
 static constexpr const char* PhonemeVoice = "en";
