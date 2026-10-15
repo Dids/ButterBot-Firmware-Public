@@ -1,4 +1,5 @@
 #include "AudioFrontend.h"
+#include "Util/HeapLog.h"
 #include <algorithm>
 #include <cstring>
 #include <limits>
@@ -329,8 +330,9 @@ AudioFrontend::AudioFrontend(){
 	taskGate = xEventGroupCreate();
 	// RunBit starts cleared so the tasks block at their gate as soon as they start.
 
-	feedTask = std::make_unique<Threaded>([this](){ feedTaskFunc(); }, "AFE_feed", 1, 3 * 1024, 6, 1, true);
-	procTask = std::make_unique<Threaded>([this](){ procTaskFunc(); }, "AFE_proc", 1, 3 * 1024, 5, 1, true);
+	// PSRAM stacks save internal RAM for Wi-Fi. Safe because these tasks never write flash.
+	feedTask = std::make_unique<Threaded>([this](){ feedTaskFunc(); }, "AFE_feed", 1, 3 * 1024, 6, 1, false);
+	procTask = std::make_unique<Threaded>([this](){ procTaskFunc(); }, "AFE_proc", 1, 3 * 1024, 5, 1, false);
 
 	feedTask->start();
 	procTask->start();
@@ -574,6 +576,8 @@ void AudioFrontend::loadModel(){
 	if(feedBufferLength != FeedBufferSize){
 		CMF_LOG(AudioFrontend, LogLevel::Warning, "AFE feed chunk size mismatch: expected %zu, got %zu", FeedBufferSize, feedBufferLength);
 	}
+
+	logHeap("listen");
 }
 
 void AudioFrontend::unloadModel(){
