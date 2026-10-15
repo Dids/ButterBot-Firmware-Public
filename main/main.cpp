@@ -63,6 +63,8 @@
 #include "Services/GasConfigureService.h"
 #include "FaceDet.h"
 #include "Util/ServiceLocator.h"
+#include "Util/HeapLog.h"
+#include <esp_system.h>
 
 DEFINE_LOG(Butterbot)
 
@@ -78,6 +80,20 @@ public:
 
 protected:
 	virtual void begin() noexcept override{
+		// After a crash, power off instead of rebooting: a crash at boot would loop until the battery is empty
+		const esp_reset_reason_t resetReason = esp_reset_reason();
+		if(resetReason == ESP_RST_PANIC || resetReason == ESP_RST_INT_WDT || resetReason == ESP_RST_TASK_WDT
+		   || resetReason == ESP_RST_WDT || resetReason == ESP_RST_BROWNOUT){
+			CMF_LOG(Butterbot, LogLevel::Error, "Restarted after a crash (reset reason %d), powering off", resetReason);
+			static constexpr gpio_config_t crashBtnConfig = {
+				.pin_bit_mask = 1ULL << PIN_BTN,
+				.mode = GPIO_MODE_INPUT
+			};
+			gpio_config(&crashBtnConfig);
+			ShutdownService::PowerOff();
+			return;
+		}
+
 		Phrases::preallocate();
 		ListenState::preallocate();
 
@@ -93,6 +109,8 @@ protected:
 		esp_log_level_set("AudioFrontend", ESP_LOG_NONE);
 		esp_log_level_set("FaceDet", ESP_LOG_NONE);
 		esp_log_level_set("Time", ESP_LOG_NONE);
+		esp_log_level_set("Heap", ESP_LOG_INFO);
+		logHeap("boot");
 
 
 		esp_err_t ret = nvs_flash_init();
@@ -105,6 +123,13 @@ protected:
 		if(!SPIFFS::init()){
 			CMF_LOG(Butterbot, LogLevel::Error, "SPIFFS init failed, aborting startup");
 			return;
+		}
+
+		// A crash reboots only the CPU, so a pin can still have its interrupt on and the base board
+		// can still hold its interrupt line high. Clear them, or the ISR service storms CPU0.
+		for(const int pin : { MOTOR_BRD_INT, PIN_BTN, CTRL_1, CTRL_2, CTRL_6, ACCELERO_INT_1 }){
+			gpio_intr_disable(static_cast<gpio_num_t>(pin));
+			gpio_set_intr_type(static_cast<gpio_num_t>(pin), GPIO_INTR_DISABLE);
 		}
 
 		gpio_install_isr_service(ESP_INTR_FLAG_IRAM);
@@ -172,6 +197,7 @@ protected:
 
 		ServiceLocator::SpeechGenInstance = std::make_unique<SpeechGen>();
 		ServiceLocator::SpeechAudioGenInstance = std::make_unique<SpeechAudioGen>();
+		logHeap("audio");
 
 		Camera* cam = registerDevice<Camera>(HardwareConfiguration::getCameraConfig(static_cast<int>(i2c_main->getPort())), i2c_main, [](sensor_t* sensor){
 			sensor->set_hmirror(sensor, 0);
@@ -191,6 +217,7 @@ protected:
 			return;
 		}
 		cam->releaseFrame();
+		logHeap("camera");
 
 		std::unique_ptr<I2CDevice> baseDevice = i2c_main->addDevice(HardwareConfiguration::getBaseBoardAddress());
 		if(baseDevice == nullptr){
@@ -249,6 +276,8 @@ protected:
 			}
 		}, /*internalStack=*/true);
 
+		logHeap("modules");
+
 		GasConfigureService* gasService = registerService<GasConfigureService>();
 		gasService->setOwner(modules);
 
@@ -260,6 +289,7 @@ protected:
 
 		ServiceLocator::MicInputInstance = std::make_unique<MicInput>(i2s_in);
 		AudioFrontend* audioFrontend = registerService<AudioFrontend>();
+		logHeap("afe");
 
 		ServiceLocator::LEDControlInstance->registerToAudio(audio);
 
@@ -282,6 +312,7 @@ protected:
 		com->OnCommand.bind(this, &Butterbot::onCommand);
 
 		server->start();
+		logHeap("ble");
 
 		speakAndWait(audio, Phrase::Startup);
 
@@ -315,6 +346,7 @@ protected:
 		// Because of this, the starting state cannot be passed via constructor but has to be set later
 		stateMachine->transitionTo<IdleState>();
 		ServiceLocator::LEDControlInstance->startIdle();
+		logHeap("idle");
 	}
 
 	virtual void tick(float deltaTime) noexcept override{
