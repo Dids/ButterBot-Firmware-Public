@@ -1,0 +1,5 @@
+# eSpeak's static data is big and only touched while speaking: keep it out of internal RAM
+[mapping:espeak_bss]
+archive: libespeak-ng.a
+entries:
+    * (extram_bss)

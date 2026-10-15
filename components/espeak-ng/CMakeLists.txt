@@ -3,7 +3,8 @@ file(GLOB ESPEAK_SRCS "src/libespeak-ng/*.c" "src/ucd/*.c")
 idf_component_register(SRCS ${ESPEAK_SRCS} "espeak_data.c"
 		INCLUDE_DIRS "include"
 		PRIV_INCLUDE_DIRS "src" "src/libespeak-ng"
-		PRIV_REQUIRES heap log esp_partition vfs)
+		PRIV_REQUIRES heap log esp_partition vfs
+		LDFRAGMENTS "linker.lf")
 
 # Upstream code, keep the build quiet without patching it
 target_compile_options(${COMPONENT_LIB} PRIVATE
