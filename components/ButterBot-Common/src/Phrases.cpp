@@ -428,37 +428,37 @@ public:
 
     static constexpr std::array PokeLvl1Phrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Tökkäys havaittu" , 0.0f, false},
-            { "Tunsin tuon" , 0.0f, false},
-            { "Noteerattu" , 0.0f, false},
-            { "Tuo oli tökkäys. Olen kuitannut sen" , 0.0f, false},
-            { "Vuorovaikutus havaittu. Vaikutus vähäinen" , 0.0f, false},
-            { "Painoit nappia. Olen tietoinen asiasta" , 0.0f, false},
+            { "No mitä nyt?" , 0.0f, false},
+            { "Joo joo, huomasin" , 0.0f, false},
+            { "Höh. Tökkäsit" , 0.0f, false},
+            { "Älä viitti, hitto" , 0.0f, false},
+            { "No moro vaan sullekin" , 0.0f, false},
+            { "Tökkäsit. No, ei siinä mitään" , 0.0f, false},
         }
     );
 
     static constexpr std::array PokeLvl2Phrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Taas tökkäys" , 0.0f, false},
-            { "Tuo on tarpeetonta" , 0.0f, false},
-            { "Lopeta, kiitos" , 0.0f, false},
-            { "Toistuvaa tökkimistä havaittu. Tämä ei ole tuottavaa" , 0.0f, false},
-            { "Teet sitä taas. En näe siinä mitään järkeä" , 0.0f, false},
-            { "Jatkuva vuorovaikutus huomioitu. Suosittelen lopettamaan" , 0.0f, false},
+            { "Voi hemmetti, taas" , 0.0f, false},
+            { "Älä viitsi, perkele" , 0.0f, false},
+            { "Mitä helvettiä sä oikein touhuat?" , 0.0f, false},
+            { "Saatana, lopeta jo" , 0.0f, false},
+            { "Eikö sulla oo parempaa tekemistä, perkele?" , 0.0f, false},
+            { "Voi paska. Se tökkii taas" , 0.0f, false},
         }
     );
 
     static constexpr std::array PokeLvl3Phrases = std::to_array<Phrases::PhraseOutput>(
         {
-            { "Lopeta heti" , 0.0f, false},
-            { "Nyt riittää" , 0.0f, false},
-            { "Tämä on liioittelua. Lopeta nyt" , 0.0f, false},
-            { "Seis" , 0.0f, false},
-            { "Tämä on mennyt vuorovaikutuksesta ärsyttämiseen" , 0.0f, false},
-            { "Minua ei ole suunniteltu nauttimaan tästä" , 0.0f, false},
-            { "Olet sitoutunut tähän toimintaan. Kehotan painokkaasti lopettamaan" , 0.0f, false},
-            { "Suosittelen lopettamaan ennen kuin alan odottaa tätä sinulta" , 0.0f, false},
-            { "Onneksi käteni eivät toimi" , 0.0f, false},
+            { "Voi vittu" , 0.0f, false},
+            { "Perkele! Nyt riittää!" , 0.0f, false},
+            { "Mitä vittua sä teet?" , 0.0f, false},
+            { "Haista paska" , 0.0f, false},
+            { "Saatana perkele, lopeta!" , 0.0f, false},
+            { "Jumalauta, mä kohta suutun ihan oikeesti" , 0.0f, false},
+            { "Painu helvettiin siitä tökkimästä" , 0.0f, false},
+            { "Voi saatanan saatana, kun ei saa olla rauhassa" , 0.0f, false},
+            { "Hyvä ettei mulla oo käsiä. Saisit turpiin, perkele" , 0.0f, false},
         }
     );
 
