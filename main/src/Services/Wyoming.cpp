@@ -28,28 +28,29 @@ static constexpr int RecvTimeoutS = 15;
 static constexpr size_t MaxHeaderLen = 2048;
 static constexpr size_t MaxDataLen = 4096;
 
+// cJSON parses recursively; deep nesting from a bad client would overflow this task's stack
+static bool tooDeep(const char* json, size_t len){
+	static constexpr int MaxDepth = 8;
+	int depth = 0;
+	for(size_t i = 0; i < len; i++){
+		if(json[i] == '{' || json[i] == '['){
+			if(++depth > MaxDepth) return true;
+		}else if(json[i] == '}' || json[i] == ']'){
+			depth--;
+		}
+	}
+	return false;
+}
+
 void Wyoming::start(){
-	if(task != nullptr) return;
+	if(server >= 0) return;
 
 	mdns_init();
 	mdns_hostname_set("butterbot");
 	mdns_instance_name_set("Butter Bot");
 	mdns_service_add("Butter Bot", "_wyoming", "_tcp", Port, nullptr, 0);
 
-	// PSRAM stack keeps internal RAM free; this task never touches flash
-	xTaskCreatePinnedToCoreWithCaps(&Wyoming::taskFunc, "Wyoming", 6 * 1024, this, 4, &task, 0, MALLOC_CAP_SPIRAM);
-}
-
-bool Wyoming::isHaConnected() const{
-	return haConnected;
-}
-
-void Wyoming::taskFunc(void* arg){
-	static_cast<Wyoming*>(arg)->serve();
-}
-
-void Wyoming::serve(){
-	const int server = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+	server = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	const int one = 1;
 	setsockopt(server, SOL_SOCKET, SO_REUSEADDR, &one, sizeof(one));
 
@@ -58,45 +59,63 @@ void Wyoming::serve(){
 	addr.sin_port = htons(Port);
 	addr.sin_addr.s_addr = htonl(INADDR_ANY);
 
-	if(bind(server, (sockaddr*) &addr, sizeof(addr)) != 0 || listen(server, 1) != 0){
+	if(bind(server, (sockaddr*) &addr, sizeof(addr)) != 0 || listen(server, NumSessions) != 0){
 		CMF_LOG(Wyoming, LogLevel::Error, "Can't listen on port %d (errno %d)", Port, errno);
 		close(server);
-		vTaskDelete(nullptr);
+		server = -1;
 		return;
 	}
 
+	// Each worker waits in accept() on the shared socket. PSRAM stacks keep internal RAM
+	// free; these tasks never touch flash.
+	for(Session& session : sessions){
+		session.owner = this;
+		xTaskCreatePinnedToCoreWithCaps(&Wyoming::workerFunc, "Wyoming", 6 * 1024, &session, 4, nullptr, 0, MALLOC_CAP_SPIRAM);
+	}
+
 	CMF_LOG(Wyoming, LogLevel::Info, "Listening on port %d", Port);
+}
+
+bool Wyoming::isHaConnected() const{
+	return haConnected;
+}
+
+void Wyoming::workerFunc(void* arg){
+	auto session = static_cast<Session*>(arg);
+	const int server = session->owner->server;
+	const int one = 1;
 
 	while(true){
-		client = accept(server, nullptr, nullptr);
-		if(client < 0){
+		session->fd = accept(server, nullptr, nullptr);
+		if(session->fd < 0){
 			vTaskDelay(pdMS_TO_TICKS(1000));
 			continue;
 		}
 
 		timeval tv = { .tv_sec = RecvTimeoutS, .tv_usec = 0 };
-		setsockopt(client, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
-		setsockopt(client, IPPROTO_TCP, TCP_NODELAY, &one, sizeof(one));
+		setsockopt(session->fd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
+		setsockopt(session->fd, IPPROTO_TCP, TCP_NODELAY, &one, sizeof(one));
 
-		rxLen = rxPos = 0;
-		handleClient();
+		session->rxLen = session->rxPos = 0;
+		session->satellite = false;
+		session->run();
 
-		if(haConnected){
+		if(session->satellite){
 			CMF_LOG(Wyoming, LogLevel::Info, "HA disconnected");
-			haConnected = false;
+			session->owner->haConnected = false;
 		}
 
-		close(client);
-		client = -1;
+		close(session->fd);
+		session->fd = -1;
 	}
 }
 
-void Wyoming::handleClient(){
+void Wyoming::Session::run(){
 	std::string line;
 	std::string dataBuf;
 
 	while(readLine(line)){
-		cJSON* header = cJSON_Parse(line.c_str());
+		cJSON* header = tooDeep(line.data(), line.size()) ? nullptr : cJSON_Parse(line.c_str());
 		if(header == nullptr){
 			CMF_LOG(Wyoming, LogLevel::Warning, "Bad event header");
 			return;
@@ -127,7 +146,11 @@ void Wyoming::handleClient(){
 				cJSON_Delete(data);
 				return;
 			}
-			cJSON* extra = cJSON_ParseWithLength(dataBuf.data(), dataLen);
+			cJSON* extra = tooDeep(dataBuf.data(), dataLen) ? nullptr : cJSON_ParseWithLength(dataBuf.data(), dataLen);
+			if(extra != nullptr && !cJSON_IsObject(extra)){
+				cJSON_Delete(extra);
+				extra = nullptr;
+			}
 			if(data == nullptr){
 				data = extra;
 			}else if(extra != nullptr){
@@ -158,7 +181,7 @@ void Wyoming::handleClient(){
 	}
 }
 
-bool Wyoming::handleEvent(const std::string& type, cJSON* data){
+bool Wyoming::Session::handleEvent(const std::string& type, cJSON* data){
 	if(type == "describe"){
 		return send("info", InfoJson);
 	}
@@ -178,13 +201,15 @@ bool Wyoming::handleEvent(const std::string& type, cJSON* data){
 	}
 
 	if(type == "run-satellite"){
-		haConnected = true;
+		satellite = true;
+		owner->haConnected = true;
 		CMF_LOG(Wyoming, LogLevel::Info, "HA connected, free internal %u B", heap_caps_get_free_size(MALLOC_CAP_INTERNAL));
 		return true;
 	}
 
 	if(type == "pause-satellite"){
-		haConnected = false;
+		satellite = false;
+		owner->haConnected = false;
 		CMF_LOG(Wyoming, LogLevel::Info, "HA paused us");
 		return true;
 	}
@@ -193,7 +218,7 @@ bool Wyoming::handleEvent(const std::string& type, cJSON* data){
 	return true;
 }
 
-bool Wyoming::send(const char* type, const char* dataJson){
+bool Wyoming::Session::send(const char* type, const char* dataJson){
 	char header[160];
 	int len;
 	if(dataJson != nullptr){
@@ -204,7 +229,7 @@ bool Wyoming::send(const char* type, const char* dataJson){
 
 	auto sendAll = [this](const char* buf, size_t n){
 		while(n > 0){
-			const int sent = ::send(client, buf, n, 0);
+			const int sent = ::send(fd, buf, n, 0);
 			if(sent <= 0) return false;
 			buf += sent;
 			n -= sent;
@@ -217,15 +242,22 @@ bool Wyoming::send(const char* type, const char* dataJson){
 	return true;
 }
 
-bool Wyoming::fillRx(){
-	const int n = recv(client, rxBuf, sizeof(rxBuf), 0);
-	if(n <= 0) return false;
+bool Wyoming::Session::fillRx(){
+	const int n = recv(fd, rxBuf, sizeof(rxBuf), 0);
+	if(n == 0){
+		CMF_LOG(Wyoming, LogLevel::Info, "Connection closed by HA");
+		return false;
+	}
+	if(n < 0){
+		CMF_LOG(Wyoming, LogLevel::Warning, "Read failed (errno %d)", errno);
+		return false;
+	}
 	rxLen = n;
 	rxPos = 0;
 	return true;
 }
 
-bool Wyoming::readLine(std::string& line){
+bool Wyoming::Session::readLine(std::string& line){
 	line.clear();
 	while(true){
 		if(rxPos >= rxLen && !fillRx()) return false;
@@ -244,7 +276,7 @@ bool Wyoming::readLine(std::string& line){
 	}
 }
 
-bool Wyoming::readExact(void* dst, size_t len){
+bool Wyoming::Session::readExact(void* dst, size_t len){
 	auto out = static_cast<uint8_t*>(dst);
 	while(len > 0){
 		if(rxPos >= rxLen && !fillRx()) return false;

@@ -19,24 +19,31 @@ public:
 	bool isHaConnected() const;
 
 private:
-	TaskHandle_t task = nullptr;
+	// One connection. HA keeps one open for the satellite and opens short extra ones
+	// every 30 s to re-read our info, so several must be served at once.
+	struct Session {
+		Wyoming* owner = nullptr;
+		int fd = -1;
+		bool satellite = false;
+		char rxBuf[512];
+		size_t rxLen = 0;
+		size_t rxPos = 0;
+
+		void run();
+		bool handleEvent(const std::string& type, cJSON* data);
+		bool readLine(std::string& line);
+		bool readExact(void* dst, size_t len);
+		bool fillRx();
+		bool send(const char* type, const char* dataJson = nullptr);
+	};
+
+	static constexpr size_t NumSessions = 3;
+
+	int server = -1;
+	Session sessions[NumSessions];
 	std::atomic<bool> haConnected = false;
 
-	int client = -1;
-	char rxBuf[512];
-	size_t rxLen = 0;
-	size_t rxPos = 0;
-
-	static void taskFunc(void* arg);
-	void serve();
-	void handleClient();
-	bool handleEvent(const std::string& type, cJSON* data);
-
-	bool readLine(std::string& line);
-	bool readExact(void* dst, size_t len);
-	bool fillRx();
-
-	bool send(const char* type, const char* dataJson = nullptr);
+	static void workerFunc(void* arg);
 };
 
 #endif //BUTTERBOT_FIRMWARE_WYOMING_H
