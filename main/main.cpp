@@ -110,6 +110,7 @@ protected:
 		esp_log_level_set("FaceDet", ESP_LOG_NONE);
 		esp_log_level_set("Time", ESP_LOG_NONE);
 		esp_log_level_set("HomeNet", ESP_LOG_INFO);
+		esp_log_level_set("Wyoming", ESP_LOG_INFO);
 		esp_log_level_set("Heap", ESP_LOG_INFO);
 		logHeap("boot");
 
@@ -317,6 +318,10 @@ protected:
 
 		ServiceLocator::HomeNetInstance = std::make_unique<HomeNet>();
 		ServiceLocator::HomeNetInstance->start();
+		if(ServiceLocator::HomeNetInstance->isRunning()){
+			ServiceLocator::WyomingInstance = std::make_unique<Wyoming>();
+			ServiceLocator::WyomingInstance->start();
+		}
 		logHeap("wifi");
 
 		speakAndWait(audio, Phrase::Startup);

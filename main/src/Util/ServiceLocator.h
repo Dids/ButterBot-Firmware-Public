@@ -9,6 +9,7 @@
 #include "Services/ScenarioRoutineService.h"
 #include "Services/Settings.h"
 #include "Services/HomeNet.h"
+#include "Services/Wyoming.h"
 #include "Devices/SC7A20.h"
 #include "Audio/SpeechGen.h"
 #include "Audio/SpeechAudioGen.h"
@@ -37,6 +38,8 @@ public:
 	inline static std::unique_ptr<MicInput> MicInputInstance = nullptr;
 
 	inline static std::unique_ptr<HomeNet> HomeNetInstance = nullptr;
+
+	inline static std::unique_ptr<Wyoming> WyomingInstance = nullptr;
 };
 
 #endif //BUTTERBOT_FIRMWARE_SERVICELOCATOR_H

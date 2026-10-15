@@ -163,6 +163,16 @@ dependencies:
       registry_url: https://components.espressif.com/
       type: service
     version: 0.2.3~2
+  espressif/mdns:
+    component_hash: 3ec0af5f6bce310512e90f482388d21cc7c0e99668172d2f895356165fc6f7c5
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.8.2
   heatshrink:
     component_hash: 9d43ee0e54233c4438a42ac4e90438e007e259c9e094345353caf930ab33d756
     dependencies:
@@ -186,8 +196,9 @@ direct_dependencies:
 - espressif/esp32-camera
 - espressif/human_face_detect
 - espressif/human_face_recognition
+- espressif/mdns
 - heatshrink
 - idf
-manifest_hash: 727fad99370f519f47b2e42f941f263092dfe76a0903def234ef329c26b44aa9
+manifest_hash: 4a1e7878879b21000684c16ff9dedcac97a80a3f7b7d1cf03780c63947b098fa
 target: esp32s3
 version: 2.0.0
