@@ -35,14 +35,20 @@ RCState::RCState(BBStateMachine* sm) : State(sm){
 	sm->bindState(com->OnDriveData, this, &RCState::onDriveData);
 	sm->bindState(com->OnConnStatus, this, &RCState::onBTDisconnect);
 
-	wifi = newObject<WiFi>(sm);
-	if(wifi == nullptr){
-		CMF_LOG(RCState, Warning, "WiFi is nullptr in postInitProperties.");
+	if(!ServiceLocator::ControllerStateInstance){
+		CMF_LOG(RCState, Warning, "ControllerState is nullptr in postInitProperties.");
 		return;
 	}
 
-	if(!ServiceLocator::ControllerStateInstance){
-		CMF_LOG(RCState, Warning, "ControllerState is nullptr in postInitProperties.");
+	if(ServiceLocator::HomeNetInstance && ServiceLocator::HomeNetInstance->isRunning()){
+		ServiceLocator::HomeNetInstance->joinRemote(ServiceLocator::ControllerStateInstance->getSSID(), ServiceLocator::ControllerStateInstance->getPassword());
+		feed = newObject<Feed>(sm);
+		return;
+	}
+
+	wifi = newObject<WiFi>(sm);
+	if(wifi == nullptr){
+		CMF_LOG(RCState, Warning, "WiFi is nullptr in postInitProperties.");
 		return;
 	}
 
@@ -63,6 +69,16 @@ RCState::~RCState(){
 	delete *feed;
 	delete *wifiSta;
 	delete *wifi;
+
+	if(ServiceLocator::HomeNetInstance){
+		ServiceLocator::HomeNetInstance->rejoinHome();
+	}
+}
+
+void RCState::tick(float deltaTime){
+	if(ServiceLocator::HomeNetInstance && ServiceLocator::HomeNetInstance->remoteDropped()){
+		sm->transitionTo<IdleState>();
+	}
 }
 
 int64_t RCState::getDynamicTickInterval() const noexcept{

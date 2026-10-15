@@ -10,6 +10,7 @@ class RCState : public State {
 public:
 	RCState(BBStateMachine* sm);
 	virtual ~RCState() override;
+	virtual void tick(float deltaTime) override;
 	virtual int64_t getDynamicTickInterval() const noexcept override;
 
 private:

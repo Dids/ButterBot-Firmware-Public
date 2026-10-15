@@ -10,3 +10,5 @@ spiffs.bin
 venv
 
 managed_components
+
+main/src/Services/HomeNetSecret.h

@@ -109,6 +109,7 @@ protected:
 		esp_log_level_set("AudioFrontend", ESP_LOG_NONE);
 		esp_log_level_set("FaceDet", ESP_LOG_NONE);
 		esp_log_level_set("Time", ESP_LOG_NONE);
+		esp_log_level_set("HomeNet", ESP_LOG_INFO);
 		esp_log_level_set("Heap", ESP_LOG_INFO);
 		logHeap("boot");
 
@@ -313,6 +314,10 @@ protected:
 
 		server->start();
 		logHeap("ble");
+
+		ServiceLocator::HomeNetInstance = std::make_unique<HomeNet>();
+		ServiceLocator::HomeNetInstance->start();
+		logHeap("wifi");
 
 		speakAndWait(audio, Phrase::Startup);
 

@@ -7,7 +7,11 @@
 DEFINE_LOG(WiFi)
 
 WiFi::WiFi() noexcept : Super() {
-    ESP_ERROR_CHECK(esp_event_loop_create_default());
+    // The default loop may already exist (home Wi-Fi uses it too)
+    const esp_err_t err = esp_event_loop_create_default();
+    if(err != ESP_OK && err != ESP_ERR_INVALID_STATE){
+        ESP_ERROR_CHECK(err);
+    }
     esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID, [](void* arg, esp_event_base_t base, int32_t id, void* data) {
         if(base != WIFI_EVENT){
             return;
@@ -39,9 +43,6 @@ WiFi::~WiFi(){
 		esp_netif_destroy(netif);
 		netif = nullptr;
 	}
-
-	esp_netif_deinit();
-	esp_event_loop_delete_default();
 
 	type = WiFiType::None;
 }
